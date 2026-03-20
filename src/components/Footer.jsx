@@ -53,11 +53,11 @@ const Footer = ({ onOpenModal }) => {
           </button>
         </div>
 
-        <div className="footer-grid" style={{ display: 'grid', gap: '4rem', marginBottom: '4rem', gridTemplateColumns: 'minmax(250px, 2fr) 1fr 1fr 1.5fr' }}>
+        <div className="footer-grid">
           
           {/* Column 1: Brand */}
           <div className="footer-column-brand" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <img className="footer-logo" src="/logo.png" alt="GrowthApex Logo" style={{ height: '80px', width: 'fit-content' }} onError={(e) => { e.target.style.display = 'none'; }} />
+            <img className="footer-logo" src="/logo.png" alt="GrowthApex Logo" style={{ height: '70px', width: 'fit-content' }} onError={(e) => { e.target.style.display = 'none'; }} />
             <p style={{ color: '#64748b', fontSize: '1.05rem', lineHeight: 1.65, fontWeight: 500 }}>
               We are a full-stack growth partner for businesses that demand performance-driven results and sustainable scale.
             </p>
@@ -120,6 +120,23 @@ const Footer = ({ onOpenModal }) => {
         </div>
 
       </div>
+
+      <style>{`
+        .footer-grid {
+          display: grid;
+          gap: 4rem;
+          margin-bottom: 4rem;
+          grid-template-columns: minmax(280px, 1.8fr) 1fr 1fr 1.3fr;
+        }
+        @media (max-width: 1024px) {
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+        }
+        @media (max-width: 600px) {
+          .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+          .footer-cta-banner { padding: 2.5rem 2rem !important; flex-direction: column; text-align: center; }
+          .footer-cta-banner h3 { font-size: 1.8rem !important; }
+        }
+      `}</style>
     </footer>
   );
 };
