@@ -62,8 +62,8 @@ const Footer = ({ onOpenModal }) => {
               We are a full-stack growth partner for businesses that demand performance-driven results and sustainable scale.
             </p>
             <div className="footer-socials" style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+              <a href="https://www.instagram.com/growth_apex05?igsh=bzhtZDRxZWFlZjNy&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{ padding: '0.7rem', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.08)' }}><Instagram size={20} /></a>
               <a href="#" style={{ padding: '0.7rem', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.08)' }}><Twitter size={20} /></a>
-              <a href="#" style={{ padding: '0.7rem', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.08)' }}><Instagram size={20} /></a>
               <a href="#" style={{ padding: '0.7rem', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.08)' }}><Linkedin size={20} /></a>
             </div>
           </div>

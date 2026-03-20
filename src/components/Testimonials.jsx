@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, MessageSquareQuote, ChevronLeft, ChevronRight } from 'lucide-react';
+import vijayImg from '../assets/Screenshot 2026-03-21 010644.png';
 
 const cases = [
   {
@@ -54,6 +55,14 @@ const testimonials = [
     role: "Online Education Brand",
     initials: "PS",
     gradient: "linear-gradient(135deg, #10b981, #3b82f6)",
+  },
+  {
+    quote: "GrowthApex transformed my content strategy and reach. As a filmmaker, I needed a brand that looked as good as my work — they delivered that plus a system that generates leads.",
+    name: "Vijay Singh",
+    role: "Filmmaker",
+    initials: "VS",
+    img: vijayImg,
+    gradient: "linear-gradient(135deg, #e02035, #ff6b6b)",
   },
   {
     quote: "I was skeptical of agencies but GrowthApex treated my brand like their own. Revenue went from ₹1.5L to ₹8L monthly.",
@@ -181,7 +190,7 @@ const TestimonialSlider = () => {
                 width: '56px',
                 height: '56px',
                 borderRadius: '50%',
-                background: t.gradient,
+                background: t.img ? `url(${t.img}) center/cover no-repeat` : t.gradient,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -191,7 +200,7 @@ const TestimonialSlider = () => {
                 flexShrink: 0,
                 boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
               }}>
-                {t.initials}
+                {!t.img && t.initials}
               </div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--text-primary)' }}>{t.name}</div>

@@ -1,8 +1,10 @@
-import { Twitter, Instagram, Globe } from 'lucide-react';
+import { Twitter, Instagram, Globe, Linkedin } from 'lucide-react';
 import suryaImg from '../assets/57ce1803-7152-45dd-b1b7-6a94a3cf03eb.jpg';
 import nareshImg from '../assets/4cf42b26-d987-439b-9915-41cfd9df81d8.jpg';
 import vinayImg from '../assets/WhatsApp Image 2026-03-20 at 4.11.53 PM.jpeg';
 import gauravImg from '../assets/gaurav.jpg';
+import vijayImg from '../assets/Screenshot 2026-03-21 010644.png';
+import { motion } from 'framer-motion';
 
 const teamMembers = [
   {
@@ -24,44 +26,68 @@ const teamMembers = [
     name: "Gaurav Rana",
     role: "Social Media Specialist",
     image: gauravImg
+  },
+  {
+    name: "Vijay Singh",
+    role: "Filmmaker",
+    image: vijayImg
   }
 ];
 
+// Duplicate for infinite scroll
+const duplicatedMembers = [...teamMembers, ...teamMembers];
+
 const Team = () => {
   return (
-    <section className="section bg-secondary" id="team" style={{ borderTop: '1px solid var(--glass-border)' }}>
+    <section className="section" id="team" style={{ background: '#09090f', position: 'relative', overflow: 'hidden' }}>
       <div className="container">
         
         {/* Top Header */}
-        <div className="text-center" style={{ marginBottom: '4rem' }}>
-          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700 }}>* MEET OUR TEAM</div>
+        <div className="text-center" style={{ marginBottom: '5rem' }}>
+          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 800 }}>* OUR EXPERTS</div>
           
           <h2 
             className="heading-xl" 
             style={{ 
               lineHeight: 1.1, 
-              fontWeight: 700,
-              fontSize: 'clamp(2.5rem, 5vw, 4rem)'
+              fontWeight: 900,
             }}
           >
-            Meet experts behind your <br/> 
-            <span style={{ fontStyle: 'italic' }} className="text-primary">growth business</span>
+            Meet the <span className="text-gradient-primary">Engineering Team</span>
           </h2>
         </div>
+      </div>
 
-        {/* Team Grid (2-4 Columns) */}
-        <div className="team-grid">
-          {teamMembers.map((member, i) => (
+      {/* Auto-Slider Container */}
+      <div style={{ padding: '2rem 0', width: '100%', overflow: 'hidden', position: 'relative' }}>
+        <motion.div 
+          style={{ 
+            display: 'flex', 
+            gap: '2rem', 
+            width: 'fit-content',
+            paddingLeft: '2rem'
+          }}
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ 
+            ease: "linear", 
+            duration: 25, 
+            repeat: Infinity 
+          }}
+        >
+          {duplicatedMembers.map((member, i) => (
             <div 
                key={i}
-               className="hover-card"
                style={{
-                 borderRadius: '1.5rem',
+                 minWidth: '320px',
+                 width: '320px',
+                 borderRadius: '2rem',
                  overflow: 'hidden',
                  position: 'relative',
                  aspectRatio: '3/4',
-                 boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                 background: '#000'
+                 background: '#111118',
+                 border: '1px solid rgba(255,255,255,0.06)',
+                 boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                 flexShrink: 0
                }}
              >
               
@@ -69,15 +95,13 @@ const Team = () => {
               <img 
                 src={member.image} 
                 alt={member.name} 
-                className="team-img"
                 style={{
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  opacity: 0.9,
-                  transition: 'transform 0.5s ease',
-                  border: 'none',
-                  display: 'block'
+                  opacity: 0.85,
+                  display: 'block',
+                  transition: 'transform 0.5s ease'
                 }}
               />
 
@@ -85,35 +109,31 @@ const Team = () => {
               <div 
                 style={{
                   position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '60%',
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(9,9,15,0.95) 0%, transparent 60%)',
                   pointerEvents: 'none'
                 }}
               ></div>
               
-              {/* Social Icons Overlay */}
               <div 
                 style={{
                   position: 'absolute',
                   top: '1.5rem',
                   right: '1.5rem',
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.5rem'
+                  gap: '0.4rem',
+                  zIndex: 10
                 }}
               >
-                <a href="#" style={{ background: 'rgba(30,30,30,0.8)', padding: '0.6rem', borderRadius: '0.5rem', color: '#fff', display: 'flex', transition: 'background 0.2s', backdropFilter: 'blur(4px)' }} onMouseOver={e => e.currentTarget.style.background = 'var(--primary)'} onMouseOut={e => e.currentTarget.style.background = 'rgba(30,30,30,0.8)'}>
-                  <Twitter size={16} />
-                </a>
-                <a href="#" style={{ background: 'rgba(30,30,30,0.8)', padding: '0.6rem', borderRadius: '0.5rem', color: '#fff', display: 'flex', transition: 'background 0.2s', backdropFilter: 'blur(4px)' }} onMouseOver={e => e.currentTarget.style.background = 'var(--primary)'} onMouseOut={e => e.currentTarget.style.background = 'rgba(30,30,30,0.8)'}>
-                  <Instagram size={16} />
-                </a>
-                <a href="#" style={{ background: 'rgba(30,30,30,0.8)', padding: '0.6rem', borderRadius: '0.5rem', color: '#fff', display: 'flex', transition: 'background 0.2s', backdropFilter: 'blur(4px)' }} onMouseOver={e => e.currentTarget.style.background = 'var(--primary)'} onMouseOut={e => e.currentTarget.style.background = 'rgba(30,30,30,0.8)'}>
-                  <Globe size={16} />
-                </a>
+                <div style={{ background: 'rgba(30,30,30,0.6)', padding: '0.5rem', borderRadius: '8px', color: '#fff', display: 'flex', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <Instagram size={13} />
+                </div>
+                <div style={{ background: 'rgba(30,30,30,0.6)', padding: '0.5rem', borderRadius: '8px', color: '#fff', display: 'flex', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <Twitter size={13} />
+                </div>
+                <div style={{ background: 'rgba(30,30,30,0.6)', padding: '0.5rem', borderRadius: '8px', color: '#fff', display: 'flex', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <Linkedin size={13} />
+                </div>
               </div>
 
               {/* Text Container */}
@@ -123,42 +143,21 @@ const Team = () => {
                   bottom: 0,
                   left: 0,
                   width: '100%',
-                  padding: '2rem 1.5rem',
+                  padding: '2.5rem 2rem',
                   zIndex: 2
                 }}
               >
-                <h3 className="heading-sm" style={{ color: '#fff', fontSize: '1.5rem', marginBottom: '0.25rem', fontWeight: 600 }}>
+                <h3 style={{ color: '#f1f5f9', fontSize: '1.4rem', marginBottom: '0.4rem', fontWeight: 800, fontFamily: 'var(--font-heading)', letterSpacing: '-0.5px' }}>
                   {member.name}
                 </h3>
-                <p style={{ color: 'var(--primary)', fontWeight: 600, fontSize: '0.9rem' }}>
+                <div style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
                   {member.role}
-                </p>
+                </div>
               </div>
 
             </div>
           ))}
-        </div>
-
-        <style>{`
-          .team-grid {
-             display: grid;
-             gap: 2rem;
-             grid-template-columns: repeat(4, 1fr);
-          }
-          .hover-card:hover .team-img {
-             transform: scale(1.05);
-          }
-          @media (max-width: 1200px) {
-             .team-grid { grid-template-columns: repeat(3, 1fr); }
-          }
-          @media (max-width: 900px) {
-             .team-grid { grid-template-columns: repeat(2, 1fr); }
-          }
-          @media (max-width: 600px) {
-             .team-grid { grid-template-columns: 1fr; }
-          }
-        `}</style>
-        
+        </motion.div>
       </div>
     </section>
   );
