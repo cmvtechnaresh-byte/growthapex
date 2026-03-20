@@ -1,0 +1,393 @@
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, MessageSquareQuote, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const cases = [
+  {
+    type: "Health Coach",
+    metricTitle: "Generated Revenue",
+    metricValue: "₹22L",
+    beforeLabel: "BEFORE", beforeValue: "12 Leads",
+    afterLabel: "AFTER (30 Days)", afterValue: "320 Leads",
+    methodLbl: "Method:", methodVal: "Meta Ads",
+    systemLbl: "System:", systemVal: "Webinar Funnel"
+  },
+  {
+    type: "Consultant",
+    metricTitle: "Return on Ad Spend",
+    metricValue: "4X ROI",
+    beforeLabel: "BEFORE (CPL)", beforeValue: "₹850",
+    afterLabel: "AFTER (CPL)", afterValue: "₹210",
+    methodLbl: "Platform:", methodVal: "Google & Meta",
+    systemLbl: "System:", systemVal: "VSL Funnel"
+  },
+  {
+    type: "Fitness Coach",
+    metricTitle: "Consistent Leads",
+    metricValue: "150+/mo",
+    beforeLabel: "BEFORE", beforeValue: "Word of Mouth",
+    afterLabel: "AFTER", afterValue: "Predictable Ops",
+    methodLbl: "Method:", methodVal: "IG Personal Brand",
+    systemLbl: "System:", systemVal: "DM Automation"
+  },
+  {
+    type: "Business Coach",
+    metricTitle: "Revenue Scale",
+    metricValue: "₹15L+",
+    beforeLabel: "BEFORE", beforeValue: "Inconsistent",
+    afterLabel: "AFTER", afterValue: "Scalable Ads",
+    methodLbl: "Method:", methodVal: "VSL Funnel",
+    systemLbl: "System:", systemVal: "High-Ticket Ops"
+  },
+  {
+    type: "Yoga Expert",
+    metricTitle: "Lead Quality",
+    metricValue: "5X ROAS",
+    beforeLabel: "BEFORE", beforeValue: "Low Quality",
+    afterLabel: "AFTER", afterValue: "Refined Leads",
+    methodLbl: "Method:", methodVal: "Meta Ads",
+    systemLbl: "System:", systemVal: "Lead Magnet"
+  },
+  {
+    type: "Education Brand",
+    metricTitle: "Enrollments",
+    metricValue: "200+/mo",
+    beforeLabel: "BEFORE", beforeValue: "50 Leads",
+    afterLabel: "AFTER", afterValue: "1200 Leads",
+    methodLbl: "Method:", methodVal: "Webinar System",
+    systemLbl: "System:", systemVal: "Auto-Webinar"
+  },
+  {
+    type: "Career Mentor",
+    metricTitle: "Monthly Revenue",
+    metricValue: "₹8L+",
+    beforeLabel: "BEFORE", beforeValue: "₹1L-2L",
+    afterLabel: "AFTER", afterValue: "₹8L Stability",
+    methodLbl: "Method:", methodVal: "Personal Brand",
+    systemLbl: "System:", systemVal: "Content Funnel"
+  }
+];
+
+// ── Testimonials for the auto-slider ──────────────────────────────────────────
+const testimonials = [
+  {
+    quote: "The strategy call alone gave us more clarity than 3 months working with our previous agency.",
+    name: "Alok J.",
+    role: "Fitness Brand Founder",
+    initials: "AJ",
+    gradient: "linear-gradient(135deg, #A21527, #8b5cf6)",
+  },
+  {
+    quote: "Within 45 days our cost per lead dropped from ₹850 to ₹210. GrowthApex doesn't just run ads — they build systems.",
+    name: "Rohan M.",
+    role: "Business Consultant",
+    initials: "RM",
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
+  },
+  {
+    quote: "We went from 50 webinar registrations a month to over 1,200. The automation alone saved us 20 hours a week.",
+    name: "Priya S.",
+    role: "Online Education Brand",
+    initials: "PS",
+    gradient: "linear-gradient(135deg, #10b981, #3b82f6)",
+  },
+  {
+    quote: "I was skeptical of agencies but GrowthApex treated my brand like their own. Revenue went from ₹1.5L to ₹8L monthly.",
+    name: "Deepak R.",
+    role: "Career Mentor & Coach",
+    initials: "DR",
+    gradient: "linear-gradient(135deg, #6366f1, #ec4899)",
+  },
+  {
+    quote: "The VSL funnel they built for us converts at 34%. We've never seen numbers like this in 6 years of running our company.",
+    name: "Kavita N.",
+    role: "Health & Wellness Coach",
+    initials: "KN",
+    gradient: "linear-gradient(135deg, #A21527, #f59e0b)",
+  },
+  {
+    quote: "GrowthApex helped us get featured in 3 major publications and our brand authority shot through the roof. Real results.",
+    name: "Sameer T.",
+    role: "Digital Brand Founder",
+    initials: "ST",
+    gradient: "linear-gradient(135deg, #0ea5e9, #8b5cf6)",
+  },
+];
+
+const SLIDE_INTERVAL = 4000;
+
+const variants = {
+  enter: (dir) => ({
+    x: dir > 0 ? 80 : -80,
+    opacity: 0,
+    scale: 0.97,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: (dir) => ({
+    x: dir > 0 ? -80 : 80,
+    opacity: 0,
+    scale: 0.97,
+    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] },
+  }),
+};
+
+const TestimonialSlider = () => {
+  const [[current, direction], setCurrent] = useState([0, 1]);
+  const timerRef = useRef(null);
+
+  const paginate = useCallback((dir) => {
+    setCurrent(([prev]) => [
+      (prev + dir + testimonials.length) % testimonials.length,
+      dir,
+    ]);
+  }, []);
+
+  // Auto-advance
+  useEffect(() => {
+    timerRef.current = setInterval(() => paginate(1), SLIDE_INTERVAL);
+    return () => clearInterval(timerRef.current);
+  }, [paginate]);
+
+  // Pause on hover
+  const pause = () => clearInterval(timerRef.current);
+  const resume = () => {
+    timerRef.current = setInterval(() => paginate(1), SLIDE_INTERVAL);
+  };
+
+  const t = testimonials[current];
+
+  return (
+    <div
+      onMouseEnter={pause}
+      onMouseLeave={resume}
+      style={{
+        maxWidth: '860px',
+        margin: '0 auto',
+        position: 'relative',
+      }}
+    >
+      {/* Card */}
+      <div
+        style={{
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(248,250,252,0.97) 100%)',
+          border: '1px solid rgba(0,0,0,0.06)',
+          borderRadius: '2rem',
+          boxShadow: '0 30px 60px rgba(0,0,0,0.07)',
+          padding: '4rem 5rem',
+          textAlign: 'center',
+          overflow: 'hidden',
+          position: 'relative',
+          minHeight: '340px',
+        }}
+      >
+        {/* Floating quote icon */}
+        <MessageSquareQuote
+          size={56}
+          color="var(--primary)"
+          style={{
+            position: 'absolute',
+            top: '-24px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            opacity: 0.85,
+            filter: 'drop-shadow(0 8px 12px rgba(162,21,39,0.18))',
+          }}
+        />
+
+        {/* Slide content */}
+        <AnimatePresence custom={direction} mode="wait">
+          <motion.div
+            key={current}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+          >
+            {/* Stars */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.75rem', marginTop: '0.5rem' }}>
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={22} fill="#fbbf24" color="#fbbf24" />
+              ))}
+            </div>
+
+            {/* Quote */}
+            <p style={{
+              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+              fontStyle: 'italic',
+              fontWeight: 500,
+              color: 'var(--text-primary)',
+              lineHeight: 1.75,
+              marginBottom: '2.5rem',
+              fontFamily: 'var(--font-heading)',
+            }}>
+              "{t.quote}"
+            </p>
+
+            {/* Author */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '50%',
+                background: t.gradient,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.1rem',
+                fontWeight: 700,
+                color: 'white',
+                flexShrink: 0,
+                boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+              }}>
+                {t.initials}
+              </div>
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--text-primary)' }}>{t.name}</div>
+                <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', fontWeight: 500 }}>{t.role}</div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Prev / Next buttons */}
+      {[{ dir: -1, side: 'left', Icon: ChevronLeft }, { dir: 1, side: 'right', Icon: ChevronRight }].map(({ dir, side, Icon }) => (
+        <button
+          key={side}
+          onClick={() => paginate(dir)}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            [side]: '-24px',
+            transform: 'translateY(-50%)',
+            width: '48px',
+            height: '48px',
+            borderRadius: '50%',
+            background: '#fff',
+            border: '1px solid rgba(0,0,0,0.1)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            zIndex: 10,
+            transition: 'box-shadow 0.2s ease, transform 0.2s ease',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(162,21,39,0.18)';
+            e.currentTarget.style.transform = 'translateY(-50%) scale(1.08)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
+            e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+          }}
+        >
+          <Icon size={20} color="var(--primary)" />
+        </button>
+      ))}
+
+      {/* Dot indicators */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '2rem' }}>
+        {testimonials.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent([i, i > current ? 1 : -1])}
+            style={{
+              width: i === current ? '28px' : '8px',
+              height: '8px',
+              borderRadius: '99px',
+              background: i === current ? 'var(--primary)' : 'rgba(0,0,0,0.15)',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              transition: 'all 0.35s ease',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+const Testimonials = () => {
+  return (
+    <section className="section" id="results">
+      <div className="container">
+        <div className="text-center" style={{ marginBottom: '4rem' }}>
+          <div className="badge mb-4">Real Growth. Real Numbers.</div>
+          <h2 className="heading-lg" style={{ marginBottom: '1rem' }}>
+            Transforming Coaches into <span className="text-gradient-primary">Industry Leaders</span>
+          </h2>
+        </div>
+
+        {/* Results cards grid */}
+        <div className="grid grid-3 gap-6" style={{ marginBottom: '6rem' }}>
+          {cases.map((c, i) => (
+            <div
+              key={i}
+              className="glass relative hover-card"
+              style={{
+                padding: '2rem 1.5rem',
+                borderRadius: '1.5rem',
+                height: '100%',
+                background: '#ffffff',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
+                border: '1px solid #f1f5f9',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+              }}
+            >
+              <div className="badge" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.05)', color: 'var(--text-primary)', border: '1px solid rgba(0,0,0,0.1)' }}>{c.type}</div>
+
+              <div style={{ marginBottom: '1.5rem', background: '#fcfcfc', padding: '1rem 1.25rem', borderRadius: '1rem', borderLeft: '5px solid var(--primary)', boxShadow: '0 2px 10px rgba(0,0,0,0.02)' }}>
+                <div style={{ color: '#64748b', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.25rem' }}>{c.metricTitle}</div>
+                <div style={{ fontSize: '2.8rem', fontWeight: 900, color: 'var(--primary)', lineHeight: 1, letterSpacing: '-1.5px' }}>{c.metricValue}</div>
+              </div>
+
+              <div className="grid grid-2 gap-4" style={{ marginBottom: '2.5rem' }}>
+                <div style={{ padding: '0.8rem 1rem', background: '#f8fafc', borderRadius: '0.75rem', border: '1px solid #e2e8f0', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                  <div style={{ color: '#94a3b8', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.beforeLabel}</div>
+                  <div style={{ fontWeight: 800, color: '#ef4444', fontSize: '1rem' }}>{c.beforeValue}</div>
+                </div>
+                <div style={{ padding: '0.8rem 1rem', background: '#f0fdf4', borderRadius: '0.75rem', border: '1px solid #bbf7d0', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                  <div style={{ color: '#16a34a', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.afterLabel}</div>
+                  <div style={{ fontWeight: 800, color: '#16a34a', fontSize: '1rem' }}>{c.afterValue}</div>
+                </div>
+              </div>
+
+              <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-muted">{c.methodLbl}</span>
+                  <span style={{ fontWeight: 600 }}>{c.methodVal}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-muted">{c.systemLbl}</span>
+                  <span style={{ fontWeight: 600 }}>{c.systemVal}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Auto-sliding testimonials ── */}
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div className="badge" style={{ marginBottom: '1rem', fontWeight: 700 }}>* WHAT OUR CLIENTS SAY</div>
+          <h3 className="heading-sm" style={{ fontWeight: 700, fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}>
+            Hear It From The <span className="text-gradient-primary">People We've Helped</span>
+          </h3>
+        </div>
+
+        <TestimonialSlider />
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;
