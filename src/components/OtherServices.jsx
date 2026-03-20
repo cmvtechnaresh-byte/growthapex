@@ -54,7 +54,6 @@ const otherServicesData = [
 ];
 
 const SLIDE_INTERVAL = 3500;
-const VISIBLE = 3; // cards visible at once
 
 /* ── Single card ─────────────────────────────────────────────────────────── */
 const ServiceCard = ({ service }) => {
@@ -65,9 +64,8 @@ const ServiceCard = ({ service }) => {
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       whileHover={{ y: -8, transition: { duration: 0.22, ease: 'easeOut' } }}
+      className="service-slide-card"
       style={{
-        flex: `0 0 calc(${100 / VISIBLE}% - 1.5rem)`,
-        minWidth: 0,
         background: hovered ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.82)',
         border: hovered
           ? `1.5px solid ${service.accentBorder}`
@@ -76,7 +74,6 @@ const ServiceCard = ({ service }) => {
         boxShadow: hovered
           ? `0 24px 48px rgba(162,21,39,0.09), 0 4px 12px rgba(0,0,0,0.04)`
           : '0 8px 24px rgba(0,0,0,0.03)',
-        padding: '2.25rem 2rem',
         display: 'flex',
         flexDirection: 'column',
         cursor: 'default',
@@ -91,6 +88,7 @@ const ServiceCard = ({ service }) => {
           scale: hovered ? 1.1 : 1,
         }}
         transition={{ duration: 0.25 }}
+        className="icon-bubble"
         style={{
           display: 'inline-flex',
           padding: '0.9rem',
@@ -110,6 +108,7 @@ const ServiceCard = ({ service }) => {
       <motion.h3
         animate={{ color: hovered ? 'var(--primary)' : 'var(--text-primary)' }}
         transition={{ duration: 0.22 }}
+        className="service-card-title"
         style={{
           fontSize: '1.1rem',
           fontWeight: 700,
@@ -124,7 +123,7 @@ const ServiceCard = ({ service }) => {
 
       {/* Desc */}
       <p
-        className="text-muted"
+        className="text-muted service-card-desc"
         style={{ fontSize: '0.95rem', lineHeight: 1.65, marginBottom: '1.5rem', flexGrow: 1 }}
       >
         {service.desc}
@@ -137,6 +136,7 @@ const ServiceCard = ({ service }) => {
             key={idx}
             animate={{ x: hovered ? 4 : 0 }}
             transition={{ duration: 0.18, delay: idx * 0.04 }}
+            className="feature-item"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -155,12 +155,13 @@ const ServiceCard = ({ service }) => {
       {/* CTA */}
       <div style={{ marginTop: 'auto' }}>
         <motion.a
-          href="#contact"
+          href="/#contact"
           animate={{
             background: hovered ? 'var(--primary)' : 'transparent',
             borderColor: hovered ? 'var(--primary)' : 'rgba(0,0,0,0.18)',
           }}
           transition={{ duration: 0.22 }}
+          className="service-card-btn"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -201,11 +202,24 @@ const ServiceCard = ({ service }) => {
 
 /* ── Main slider ─────────────────────────────────────────────────────────── */
 const OtherServices = () => {
+  const [visibleCount, setVisibleCount] = useState(3);
   const total = otherServicesData.length;
   const [current, setCurrent] = useState(0);
   const [dir, setDir] = useState(1);
   const timerRef = useRef(null);
   const paused = useRef(false);
+
+  // Responsive logic
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setVisibleCount(1);
+      else if (window.innerWidth < 1024) setVisibleCount(2);
+      else setVisibleCount(3);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const go = useCallback((d) => {
     setDir(d);
@@ -225,12 +239,59 @@ const OtherServices = () => {
   }, [startTimer]);
 
   // Build the visible slice (wrapping)
-  const visibleCards = Array.from({ length: VISIBLE }, (_, i) =>
+  const visibleCards = Array.from({ length: visibleCount }, (_, i) =>
     otherServicesData[(current + i) % total]
   );
 
   return (
     <section className="section bg-secondary" id="other-services">
+      <style>{`
+        .service-slide-card {
+           flex: 0 0 calc(33.333% - 1rem);
+           padding: 2.25rem 2rem;
+        }
+        @media (max-width: 1024px) {
+           .service-slide-card {
+              flex: 0 0 calc(50% - 0.75rem);
+              padding: 2rem 1.5rem;
+           }
+        }
+        @media (max-width: 640px) {
+           .service-slide-card {
+              flex: 0 0 100%;
+              padding: 1.75rem 1.25rem;
+           }
+           .service-card-title {
+              font-size: 1rem !important;
+           }
+           .service-card-desc {
+              font-size: 0.875rem !important;
+           }
+           .icon-bubble {
+              font-size: 1.8rem !important;
+              padding: 0.75rem !important;
+              margin-bottom: 1.25rem !important;
+           }
+           .feature-item {
+              font-size: 0.8rem !important;
+           }
+           .service-card-btn {
+              font-size: 0.8rem !important;
+              padding: 0.25rem 0.25rem 0.25rem 0.9rem !important;
+           }
+           .slider-nav-btn {
+              width: 38px !important;
+              height: 38px !important;
+           }
+           .slider-nav-btn-prev {
+              left: -8px !important;
+           }
+           .slider-nav-btn-next {
+              right: -8px !important;
+           }
+        }
+      `}</style>
+
       <div className="container">
 
         {/* Header */}
@@ -261,15 +322,15 @@ const OtherServices = () => {
           onMouseLeave={() => { paused.current = false; }}
         >
           {/* Cards strip */}
-          <div style={{ overflow: 'hidden', padding: '1rem 0.5rem 2rem' }}>
+          <div style={{ overflow: 'hidden', padding: '1rem 0.15rem 2rem' }}>
             <AnimatePresence mode="wait" custom={dir}>
               <motion.div
                 key={current}
                 custom={dir}
-                initial={{ x: dir > 0 ? 120 : -120, opacity: 0 }}
+                initial={{ x: dir > 0 ? 100 : -100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                exit={{ x: dir > 0 ? -120 : 120, opacity: 0 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                exit={{ x: dir > 0 ? -100 : 100, opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   display: 'flex',
                   gap: '1.5rem',
@@ -286,6 +347,7 @@ const OtherServices = () => {
           <button
             onClick={() => go(-1)}
             aria-label="Previous"
+            className="slider-nav-btn slider-nav-btn-prev"
             style={{
               position: 'absolute',
               top: '50%',
@@ -320,6 +382,7 @@ const OtherServices = () => {
           <button
             onClick={() => go(1)}
             aria-label="Next"
+            className="slider-nav-btn slider-nav-btn-next"
             style={{
               position: 'absolute',
               top: '50%',

@@ -8,7 +8,6 @@ const stats = [
   { num: 200, prefix: '', suffix: 'K+', label: 'Leads Generated' },
 ];
 
-// Spring-based animated counter
 const AnimatedNumber = ({ value, duration = 2 }) => {
   const ref = useRef(null);
   const motionValue = useMotionValue(0);
@@ -55,8 +54,31 @@ const Stats = () => {
         borderBottom: '1px solid var(--glass-border)',
       }}
     >
+      <style>{`
+        .stats-grid {
+           display: grid;
+           grid-template-columns: repeat(4, 1fr);
+           gap: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+           .stats-grid {
+              grid-template-columns: repeat(2, 1fr);
+           }
+        }
+        @media (max-width: 480px) {
+           .stats-grid {
+              grid-template-columns: 1fr;
+           }
+           .stat-value {
+              font-size: 2.25rem !important;
+           }
+           .stat-label {
+              font-size: 0.9rem !important;
+           }
+        }
+      `}</style>
       <div className="container">
-        <div ref={ref} className="grid grid-4 gap-6">
+        <div ref={ref} className="stats-grid">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -70,17 +92,16 @@ const Stats = () => {
                 transition: { duration: 0.22 },
               }}
               className="stat-card glass"
-              style={{ cursor: 'default' }}
+              style={{ cursor: 'default', textAlign: 'center' }}
             >
-              {/* Animated number */}
-              <div className="stat-value">
+              <div className="stat-value" style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
                 {stat.prefix}
                 <AnimatedNumber value={stat.num} duration={2} />
                 <span style={{ color: 'var(--primary)' }}>{stat.suffix}</span>
               </div>
 
               <div
-                className="text-secondary"
+                className="stat-label text-secondary"
                 style={{ fontSize: '1.1rem', fontWeight: 500 }}
               >
                 {stat.label}
