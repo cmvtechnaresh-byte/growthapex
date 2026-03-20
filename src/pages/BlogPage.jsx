@@ -118,54 +118,54 @@ const BlogPage = () => {
       <style>{`
         /* ── Blog page styles ─────────────────────── */
         .blog-page-hero {
-          padding: 9rem 0 4rem;
-          background: linear-gradient(160deg, #fff 0%, #fdf2f4 55%, #f5f3ff 100%);
+          padding: 10rem 0 5rem;
+          background: #09090f;
           position: relative; overflow: hidden;
         }
         .blog-page-hero::before {
           content: '';
-          position: absolute; top: -30%; right: -10%;
-          width: 700px; height: 700px;
-          background: radial-gradient(circle, rgba(162,21,39,0.06) 0%, transparent 65%);
+          position: absolute; top: -10%; right: -5%;
+          width: 800px; height: 800px;
+          background: radial-gradient(circle, rgba(224,32,53,0.1) 0%, transparent 70%);
           border-radius: 50%; pointer-events: none;
         }
         .blog-hero-inner { text-align: center; max-width: 780px; margin: 0 auto; }
         .blog-hero-title {
           font-family: var(--font-heading);
-          font-size: clamp(2.4rem, 5vw, 4rem);
-          font-weight: 800; line-height: 1.1; letter-spacing: -1.5px;
-          color: #1a1f2e; margin-bottom: 1rem;
+          font-size: clamp(2.8rem, 6vw, 4.5rem);
+          font-weight: 900; line-height: 1.1; letter-spacing: -2px;
+          color: #f1f5f9; margin-bottom: 1.5rem;
         }
         .blog-hero-title span {
           background: linear-gradient(135deg, var(--primary) 0%, #ff6b6b 100%);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .blog-hero-sub { color: #64748b; font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; }
+        .blog-hero-sub { color: #94a3b8; font-size: 1.25rem; line-height: 1.75; margin-bottom: 2.5rem; }
         /* Stats strip */
         .blog-stats-strip {
           display: flex; gap: 2rem; justify-content: center;
           flex-wrap: wrap; margin-top: 2.5rem;
         }
-        .blog-stat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #475569; }
-        .blog-stat svg { color: var(--primary); }
+        .blog-stat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 700; color: #64748b; }
+        .blog-stat svg { color: #e02035; filter: drop-shadow(0 0 8px rgba(224,32,53,0.4)); }
         /* Search */
         .blog-search-wrap {
           position: relative; max-width: 480px; margin: 2rem auto 0;
         }
         .blog-search {
-          width: 100%; padding: 0.875rem 1rem 0.875rem 3rem;
+          width: 100%; padding: 1rem 1.25rem 1rem 3.5rem;
           border-radius: 99px;
-          border: 1.5px solid rgba(0,0,0,0.1);
-          background: #fff;
-          font-size: 0.95rem;
+          border: 1.5px solid rgba(255,255,255,0.1);
+          background: rgba(255,255,255,0.05);
+          font-size: 1rem;
           font-family: var(--font-body);
-          color: #1e293b;
+          color: #f1f5f9;
           outline: none;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-          transition: border-color 0.2s, box-shadow 0.2s;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+          transition: all 0.25s ease;
         }
-        .blog-search:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(162,21,39,0.1); }
-        .blog-search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .blog-search:focus { border-color: var(--primary); background: rgba(255,255,255,0.08); }
+        .blog-search-icon { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: #64748b; }
         /* Category chips */
         .cat-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem; }
         .cat-chip {
@@ -185,13 +185,14 @@ const BlogPage = () => {
         .featured-card {
           display: grid;
           grid-template-columns: 1.1fr 1fr;
-          border-radius: 1.5rem; overflow: hidden;
-          background: #fff;
-          border: 1px solid rgba(0,0,0,0.07);
-          box-shadow: 0 20px 60px rgba(0,0,0,0.07);
+          border-radius: 2rem; overflow: hidden;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.08);
+          boxShadow: 0 30px 60px rgba(0,0,0,0.4);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
+          position: relative;
         }
-        .featured-card:hover { transform: translateY(-5px); box-shadow: 0 30px 70px rgba(162,21,39,0.1); }
+        .featured-card:hover { transform: translateY(-8px); boxShadow: 0 40px 80px rgba(224,32,53,0.15); border-color: rgba(224,32,53,0.3); }
         .featured-img-wrap { position: relative; overflow: hidden; min-height: 340px; }
         .featured-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
         .featured-card:hover .featured-img { transform: scale(1.04); }
@@ -207,8 +208,8 @@ const BlogPage = () => {
         }
         .featured-title {
           font-family: var(--font-heading);
-          font-size: clamp(1.4rem, 2.2vw, 2rem);
-          font-weight: 800; line-height: 1.25; color: #1a1f2e; margin-bottom: 1rem;
+          font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+          font-weight: 800; line-height: 1.2; color: #f1f5f9; margin-bottom: 1.25rem;
         }
         .featured-excerpt { color: #64748b; line-height: 1.75; font-size: 0.97rem; margin-bottom: 1.75rem; }
         .read-cta {
@@ -222,26 +223,26 @@ const BlogPage = () => {
         .posts-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.75rem;
+          gap: 2rem;
         }
         .post-card {
-          background: #fff;
-          border-radius: 1.25rem;
+          background: rgba(255,255,255,0.03);
+          border-radius: 1.75rem;
           overflow: hidden;
-          border: 1px solid rgba(0,0,0,0.07);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.04);
+          border: 1px solid rgba(255,255,255,0.07);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
           display: flex; flex-direction: column;
-          transition: transform 0.28s ease, box-shadow 0.28s ease;
+          transition: all 0.3s ease;
         }
-        .post-card:hover { transform: translateY(-7px); box-shadow: 0 20px 48px rgba(162,21,39,0.09); }
+        .post-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.5); border-color: rgba(224,32,53,0.3); }
         .post-card-img-wrap { position: relative; overflow: hidden; height: 200px; flex-shrink: 0; }
         .post-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; display: block; }
         .post-card:hover .post-card-img { transform: scale(1.05); }
         .post-cat-pill { position: absolute; top: 0.85rem; left: 0.85rem; }
         .post-card-body { padding: 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
         .post-card-title {
-          font-family: var(--font-heading); font-size: 1.05rem;
-          font-weight: 700; line-height: 1.35; color: #1a1f2e; margin-bottom: 0.6rem;
+          font-family: var(--font-heading); font-size: 1.2rem;
+          font-weight: 800; line-height: 1.35; color: #f1f5f9; margin-bottom: 0.75rem;
         }
         .post-card-excerpt {
           color: #64748b; font-size: 0.87rem; line-height: 1.65;
@@ -305,7 +306,7 @@ const BlogPage = () => {
       </div>
 
       {/* ── Main content ── */}
-      <main style={{ padding: '4rem 0 7rem', background: '#f8fafc' }}>
+      <main style={{ padding: '4rem 0 7rem', background: '#09090f' }}>
         <div className="container">
 
           {/* Category filter */}
@@ -318,10 +319,10 @@ const BlogPage = () => {
                   className="cat-chip"
                   onClick={() => { setActiveCategory(cat); setSearch(''); }}
                   style={{
-                    background: active ? 'var(--primary)' : '#fff',
-                    color: active ? '#fff' : '#475569',
-                    borderColor: active ? 'var(--primary)' : 'rgba(0,0,0,0.1)',
-                    boxShadow: active ? '0 4px 16px rgba(162,21,39,0.22)' : '0 2px 8px rgba(0,0,0,0.04)',
+                    background: active ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
+                    color: active ? '#fff' : '#94a3b8',
+                    borderColor: active ? 'var(--primary)' : 'rgba(255,255,255,0.1)',
+                    boxShadow: active ? '0 8px 24px rgba(224,32,53,0.3)' : '0 2px 10px rgba(0,0,0,0.2)',
                   }}
                   aria-pressed={active}
                 >

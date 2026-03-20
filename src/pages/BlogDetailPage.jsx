@@ -40,7 +40,7 @@ const ReadingProgress = () => {
     return () => window.removeEventListener('scroll', update);
   }, []);
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '3px', zIndex: 200, background: 'rgba(0,0,0,0.06)' }}>
+    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '3px', zIndex: 200, background: 'rgba(255,255,255,0.06)' }}>
       <motion.div
         style={{ height: '100%', background: 'linear-gradient(90deg,var(--primary),#ff6b6b)', transformOrigin: 'left' }}
         animate={{ width: `${progress}%` }}
@@ -155,7 +155,7 @@ const BlogDetailPage = () => {
       <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '8rem', gap: '1rem' }}>
         <BookOpen size={48} style={{ color: '#cbd5e1' }} />
         <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 700, color: '#1a1f2e' }}>Article not found</h1>
-        <Link to="/blog" style={{ color: 'var(--primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+        <Link to="/blog" style={{ color: 'var(--primary)', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(224,32,53,0.1)', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>
           <ArrowLeft size={16} /> Back to Blog
         </Link>
       </div>
@@ -172,7 +172,7 @@ const BlogDetailPage = () => {
         .article-cover-img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .article-cover-overlay {
           position: absolute; inset: 0;
-          background: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.75) 100%);
+          background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(9,9,15,1) 100%);
         }
         .article-cover-content {
           position: absolute; bottom: 0; left: 0; right: 0;
@@ -193,7 +193,7 @@ const BlogDetailPage = () => {
           cursor: pointer; text-decoration: none; transition: background 0.2s;
           position: absolute; top: 6.5rem; left: clamp(1rem, 3vw, 3rem);
         }
-        .back-btn:hover { background: rgba(255,255,255,0.25); }
+        .back-btn:hover { background: rgba(255,255,255,0.25); border-color: var(--primary); }
         /* Layout */
         .detail-layout {
           display: grid;
@@ -205,11 +205,11 @@ const BlogDetailPage = () => {
         /* Author card */
         .author-card {
           display: flex; align-items: center; gap: 1rem;
-          padding: 1.25rem 1.5rem;
-          background: #fff; border-radius: 1rem;
-          border: 1px solid rgba(0,0,0,0.07);
-          box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-          margin-bottom: 2.5rem;
+          padding: 1.5rem 1.75rem;
+          background: rgba(255,255,255,0.03); border-radius: 1.25rem;
+          border: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          margin-bottom: 3rem;
         }
         .author-avatar {
           width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0;
@@ -218,57 +218,63 @@ const BlogDetailPage = () => {
         }
         /* Article body */
         .article-body p {
-          color: #374151; font-size: 1.08rem; line-height: 1.92;
-          margin-bottom: 1.6rem; font-family: var(--font-body);
+          color: #94a3b8; font-size: 1.15rem; line-height: 1.85;
+          margin-bottom: 1.8rem; font-family: var(--font-body);
         }
         .article-body h2 {
           font-family: var(--font-heading);
-          font-size: 1.45rem; font-weight: 800; color: #111827;
-          margin: 2.75rem 0 1rem;
-          padding-left: 1.1rem;
-          border-left: 4px solid var(--primary);
-          line-height: 1.3;
+          font-size: 1.75rem; font-weight: 900; color: #f1f5f9;
+          margin: 3.5rem 0 1.5rem;
+          padding-left: 1.25rem;
+          border-left: 5px solid var(--primary);
+          line-height: 1.2;
+        }
+        .article-body h3 {
+          font-family: var(--font-heading);
+          font-size: 1.4rem; font-weight: 800; color: #f1f5f9;
+          margin: 2.5rem 0 1rem;
         }
         /* Excerpt pull quote */
         .article-excerpt {
-          font-size: 1.15rem; font-style: italic; line-height: 1.8;
-          color: #64748b; border-left: 4px solid var(--primary);
-          padding: 1rem 1.5rem; margin-bottom: 2.5rem;
-          background: rgba(162,21,39,0.04); border-radius: 0 0.75rem 0.75rem 0;
+          font-size: 1.25rem; font-style: italic; line-height: 1.8;
+          color: #94a3b8; border-left: 4px solid var(--primary);
+          padding: 1.25rem 2rem; margin-bottom: 3.5rem;
+          background: rgba(224,32,53,0.05); border-radius: 0 1rem 1rem 0;
+          box-shadow: inset 0 0 40px rgba(0,0,0,0.2);
         }
         /* Share + divider */
-        .article-divider { border: none; border-top: 1px solid rgba(0,0,0,0.08); margin: 2.5rem 0; }
+        .article-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 3rem 0; }
         /* CTA box */
         .article-cta {
-          background: linear-gradient(135deg, rgba(162,21,39,0.06) 0%, rgba(139,92,246,0.06) 100%);
-          border: 1px solid rgba(162,21,39,0.15);
-          border-radius: 1.5rem;
-          padding: 2.5rem;
+          background: linear-gradient(135deg, rgba(224,32,53,0.1) 0%, rgba(167,139,250,0.05) 100%);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 2rem;
+          padding: 3rem;
           text-align: center;
-          margin-top: 3.5rem;
+          margin-top: 4rem;
         }
         .article-cta h2 {
-          font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;
-          color: #1a1f2e; margin-bottom: 0.75rem; border: none; padding: 0;
+          font-family: var(--font-heading); font-size: 1.75rem; font-weight: 900;
+          color: #f1f5f9; margin-bottom: 1rem; border: none; padding: 0;
         }
         /* Sidebar */
         .sidebar { position: sticky; top: 110px; }
         .sidebar-card {
-          background: #fff; border-radius: 1.25rem;
-          border: 1px solid rgba(0,0,0,0.07);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.04);
-          padding: 1.5rem;
-          margin-bottom: 1.5rem;
+          background: rgba(255,255,255,0.03); border-radius: 1.5rem;
+          border: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          padding: 1.75rem;
+          margin-bottom: 2rem;
         }
         .sidebar-title { font-family: var(--font-heading); font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 1rem; }
         /* Related cards */
         .related-card {
-          background: #fff; border-radius: 0.875rem; overflow: hidden;
-          border: 1px solid rgba(0,0,0,0.07);
-          box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          background: rgba(255,255,255,0.03); border-radius: 1.25rem; overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.07);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          transition: all 0.3s ease;
         }
-        .related-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.08); }
+        .related-card:hover { transform: translateY(-7px); box-shadow: 0 25px 50px rgba(0,0,0,0.5); border-color: rgba(224,32,53,0.3); }
         .related-card:hover .related-img { transform: scale(1.05); }
         /* Related grid */
         .related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 1.5rem; }
@@ -314,7 +320,7 @@ const BlogDetailPage = () => {
       </header>
 
       {/* ── Body ── */}
-      <main style={{ background: '#f8fafc' }}>
+      <main style={{ background: '#09090f' }}>
         <div className="container">
           <div className="detail-layout">
 
@@ -326,7 +332,7 @@ const BlogDetailPage = () => {
                   {post.authorInitials}
                 </div>
                 <div>
-                  <div style={{ fontWeight: 700, color: '#1a1f2e', fontSize: '0.95rem' }}>{post.author}</div>
+                  <div style={{ fontWeight: 700, color: '#f1f5f9', fontSize: '1rem' }}>{post.author}</div>
                   <div style={{ color: '#94a3b8', fontSize: '0.8rem' }}>Published {post.date}</div>
                 </div>
                 <div style={{ marginLeft: 'auto' }}>
@@ -404,8 +410,8 @@ const BlogDetailPage = () => {
                     { label: 'Author', value: post.author },
                   ].map(({ label, value }) => (
                     <div key={label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                      <span style={{ color: '#94a3b8', fontWeight: 600 }}>{label}</span>
-                      <span style={{ color: '#1a1f2e', fontWeight: 600, textAlign: 'right', maxWidth: '60%' }}>{value}</span>
+                      <span style={{ color: '#64748b', fontWeight: 600 }}>{label}</span>
+                      <span style={{ color: '#f1f5f9', fontWeight: 700, textAlign: 'right', maxWidth: '60%' }}>{value}</span>
                     </div>
                   ))}
                 </div>
@@ -424,7 +430,7 @@ const BlogDetailPage = () => {
           {related.length > 0 && (
             <section aria-label="Related articles" style={{ paddingBottom: '5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
-                <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, color: '#1a1f2e' }}>
+                <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 900, color: '#f1f5f9' }}>
                   You Might Also Like
                 </h2>
               </div>

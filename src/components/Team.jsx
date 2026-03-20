@@ -2,11 +2,12 @@ import { Twitter, Instagram, Globe } from 'lucide-react';
 import suryaImg from '../assets/57ce1803-7152-45dd-b1b7-6a94a3cf03eb.jpg';
 import nareshImg from '../assets/4cf42b26-d987-439b-9915-41cfd9df81d8.jpg';
 import vinayImg from '../assets/WhatsApp Image 2026-03-20 at 4.11.53 PM.jpeg';
+import gauravImg from '../assets/gaurav.jpg';
 
 const teamMembers = [
   {
-    name: "Surya Singh",
-    role: "Founder",
+    name: "Surya Pratap Singh",
+    role: "Growth Strategist",
     image: suryaImg
   },
   {
@@ -18,6 +19,11 @@ const teamMembers = [
     name: "Vinay Kumar",
     role: "Performance Specialist",
     image: vinayImg
+  },
+  {
+    name: "Gaurav Rana",
+    role: "Social Media Specialist",
+    image: gauravImg
   }
 ];
 
@@ -43,8 +49,8 @@ const Team = () => {
           </h2>
         </div>
 
-        {/* Team Grid (3 Columns) */}
-        <div className="grid gap-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+        {/* Team Grid (2-4 Columns) */}
+        <div className="team-grid">
           {teamMembers.map((member, i) => (
             <div 
                key={i}
@@ -63,6 +69,7 @@ const Team = () => {
               <img 
                 src={member.image} 
                 alt={member.name} 
+                className="team-img"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -72,10 +79,9 @@ const Team = () => {
                   border: 'none',
                   display: 'block'
                 }}
-                className="team-img"
               />
 
-              {/* Gradient Overlay for Text Visibility */}
+              {/* Gradient Overlay */}
               <div 
                 style={{
                   position: 'absolute',
@@ -88,7 +94,7 @@ const Team = () => {
                 }}
               ></div>
               
-              {/* Right Side Social Icons */}
+              {/* Social Icons Overlay */}
               <div 
                 style={{
                   position: 'absolute',
@@ -110,7 +116,7 @@ const Team = () => {
                 </a>
               </div>
 
-              {/* Bottom Text */}
+              {/* Text Container */}
               <div 
                 style={{
                   position: 'absolute',
@@ -129,15 +135,29 @@ const Team = () => {
                 </p>
               </div>
 
-              <style>{"\
-                .hover-card:hover .team-img {\
-                   transform: scale(1.05);\
-                }\
-              "}</style>
-
             </div>
           ))}
         </div>
+
+        <style>{`
+          .team-grid {
+             display: grid;
+             gap: 2rem;
+             grid-template-columns: repeat(4, 1fr);
+          }
+          .hover-card:hover .team-img {
+             transform: scale(1.05);
+          }
+          @media (max-width: 1200px) {
+             .team-grid { grid-template-columns: repeat(3, 1fr); }
+          }
+          @media (max-width: 900px) {
+             .team-grid { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (max-width: 600px) {
+             .team-grid { grid-template-columns: 1fr; }
+          }
+        `}</style>
         
       </div>
     </section>

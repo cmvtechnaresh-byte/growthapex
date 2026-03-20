@@ -1,24 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+import aboutImg from '../assets/46928.jpg';
+import FloatingGraphics from './FloatingGraphics';
 
 const stats = [
   {
-    num: 5,
+    num: 3,
     suffix: "+",
     title: "Years Experience",
-    desc: "Built, optimized, and scaled performance-driven marketing systems for businesses, brands, consultants, and digital companies across multiple industries."
+    desc: "Built, optimized, and scaled performance-driven marketing systems for businesses, consultants, and brands across multiple industries."
   },
   {
-    num: 250,
+    num: 50,
     suffix: "+",
     title: "Funnels & Campaigns",
-    desc: "Executed high-converting funnels and paid campaigns for service businesses, education brands, and online companies focused on lead generation and sales."
+    desc: "Executed high-converting funnels and paid campaigns for service businesses and education brands focused on lead generation and sales."
   },
   {
-    num: 9,
+    num: 1,
     suffix: " Cr+",
     title: "Ad Spend Experience",
-    desc: "Managed and optimized over ₹9 crores in paid ads across Meta, Google, and YouTube, gaining deep insights into audience behavior and scalable performance."
+    desc: "Managed and optimized over ₹1 crore in paid ads across Meta and Google, gaining deep insights into audience behavior and scalable performance."
   },
   {
     num: 94,
@@ -73,7 +75,8 @@ const AboutUs = () => {
   const isInView = useInView(containerRef, { once: true, margin: '-100px' });
 
   return (
-    <section className="section bg-secondary" id="about" style={{ borderTop: '1px solid var(--glass-border)' }}>
+    <section className="section bg-secondary" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
+      <FloatingGraphics />
       <div className="container">
 
         {/* Top Headings */}
@@ -92,27 +95,32 @@ const AboutUs = () => {
           <h2
             className="heading-sm"
             style={{
-              maxWidth: '900px',
-              margin: '0 auto 2rem auto',
-              lineHeight: 1.5,
+              maxWidth: '1000px',
+              margin: '0 auto 2.5rem auto',
+              lineHeight: 1.4,
               fontWeight: 600,
-              fontSize: 'clamp(1.5rem, 3vw, 2.25rem)'
+              fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)'
             }}
           >
-            We are a performance-driven marketing team that helps businesses scale using data-backed funnels,{' '}
-            <span style={{ fontStyle: 'italic' }} className="text-primary">high-intent ads, and conversion-focused strategies.</span>
+            At GrowthApex, we don’t just manage marketing —{' '}
+            <span style={{ fontStyle: 'italic' }} className="text-primary">we engineer growth systems.</span>
           </h2>
 
           <div
             style={{
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: 'var(--text-secondary)'
+              maxWidth: '850px',
+              margin: '0 auto',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem'
             }}
           >
-            * OUR MISSION IS SIMPLE TO BUILD PREDICTABLE CLIENT-ACQUISITION SYSTEMS THAT DRIVE REVENUE, AUTHORITY, AND LONG-TERM GROWTH.
+            <p style={{ fontSize: '1.2rem', color: '#94a3b8', fontWeight: 500, lineHeight: 1.7 }}>
+              We combine strategy, content, paid marketing, and automation into one powerful ecosystem that helps brands scale faster and smarter.
+            </p>
+            <p style={{ fontSize: '1.1rem', color: '#94a3b8', fontWeight: 200, lineHeight: 1.7 }}>
+              From identifying your exact positioning to executing high-converting campaigns, our approach is built on data, creativity, and performance. We believe growth isn’t random — it’s designed, tested, and optimized.
+            </p>
           </div>
         </motion.div>
 
@@ -135,9 +143,10 @@ const AboutUs = () => {
             }}
           >
             <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
-              alt="Corporate Office Building"
+              src={aboutImg}
+              alt="Strategic Growth Analysis"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              className="graphic-shadow animate-float-medium"
             />
           </motion.div>
 
@@ -161,10 +170,10 @@ const AboutUs = () => {
                   padding: '2.5rem 2rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  background: 'rgba(255,255,255,0.7)',
+                  background: 'rgba(255,255,255,0.04)',
                   borderRadius: '1.5rem',
-                  border: '1px solid rgba(0,0,0,0.03)',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.02)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
                   cursor: 'default',
                 }}
               >

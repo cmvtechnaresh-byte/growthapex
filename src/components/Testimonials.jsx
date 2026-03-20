@@ -29,42 +29,6 @@ const cases = [
     afterLabel: "AFTER", afterValue: "Predictable Ops",
     methodLbl: "Method:", methodVal: "IG Personal Brand",
     systemLbl: "System:", systemVal: "DM Automation"
-  },
-  {
-    type: "Business Coach",
-    metricTitle: "Revenue Scale",
-    metricValue: "₹15L+",
-    beforeLabel: "BEFORE", beforeValue: "Inconsistent",
-    afterLabel: "AFTER", afterValue: "Scalable Ads",
-    methodLbl: "Method:", methodVal: "VSL Funnel",
-    systemLbl: "System:", systemVal: "High-Ticket Ops"
-  },
-  {
-    type: "Yoga Expert",
-    metricTitle: "Lead Quality",
-    metricValue: "5X ROAS",
-    beforeLabel: "BEFORE", beforeValue: "Low Quality",
-    afterLabel: "AFTER", afterValue: "Refined Leads",
-    methodLbl: "Method:", methodVal: "Meta Ads",
-    systemLbl: "System:", systemVal: "Lead Magnet"
-  },
-  {
-    type: "Education Brand",
-    metricTitle: "Enrollments",
-    metricValue: "200+/mo",
-    beforeLabel: "BEFORE", beforeValue: "50 Leads",
-    afterLabel: "AFTER", afterValue: "1200 Leads",
-    methodLbl: "Method:", methodVal: "Webinar System",
-    systemLbl: "System:", systemVal: "Auto-Webinar"
-  },
-  {
-    type: "Career Mentor",
-    metricTitle: "Monthly Revenue",
-    metricValue: "₹8L+",
-    beforeLabel: "BEFORE", beforeValue: "₹1L-2L",
-    afterLabel: "AFTER", afterValue: "₹8L Stability",
-    methodLbl: "Method:", methodVal: "Personal Brand",
-    systemLbl: "System:", systemVal: "Content Funnel"
   }
 ];
 
@@ -171,33 +135,15 @@ const TestimonialSlider = () => {
         position: 'relative',
       }}
     >
-      {/* Card */}
+      {/* Testimonial Content Area */}
       <div
         style={{
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(248,250,252,0.97) 100%)',
-          border: '1px solid rgba(0,0,0,0.06)',
-          borderRadius: '2rem',
-          boxShadow: '0 30px 60px rgba(0,0,0,0.07)',
-          padding: '4rem 5rem',
+          padding: '2rem 1rem',
           textAlign: 'center',
-          overflow: 'hidden',
           position: 'relative',
-          minHeight: '340px',
+          minHeight: '280px',
         }}
       >
-        {/* Floating quote icon */}
-        <MessageSquareQuote
-          size={56}
-          color="var(--primary)"
-          style={{
-            position: 'absolute',
-            top: '-24px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            opacity: 0.85,
-            filter: 'drop-shadow(0 8px 12px rgba(162,21,39,0.18))',
-          }}
-        />
 
         {/* Slide content */}
         <AnimatePresence custom={direction} mode="wait">
@@ -269,9 +215,9 @@ const TestimonialSlider = () => {
             width: '48px',
             height: '48px',
             borderRadius: '50%',
-            background: '#fff',
-            border: '1px solid rgba(0,0,0,0.1)',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -302,7 +248,7 @@ const TestimonialSlider = () => {
               width: i === current ? '28px' : '8px',
               height: '8px',
               borderRadius: '99px',
-              background: i === current ? 'var(--primary)' : 'rgba(0,0,0,0.15)',
+              background: i === current ? 'var(--primary)' : 'rgba(255,255,255,0.15)',
               border: 'none',
               cursor: 'pointer',
               padding: 0,
@@ -338,27 +284,27 @@ const Testimonials = () => {
                 padding: '2rem 1.5rem',
                 borderRadius: '1.5rem',
                 height: '100%',
-                background: '#ffffff',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-                border: '1px solid #f1f5f9',
+                background: 'rgba(255,255,255,0.04)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                border: '1px solid rgba(255,255,255,0.07)',
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease'
               }}
             >
               <div className="badge" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.05)', color: 'var(--text-primary)', border: '1px solid rgba(0,0,0,0.1)' }}>{c.type}</div>
 
-              <div style={{ marginBottom: '1.5rem', background: '#fcfcfc', padding: '1rem 1.25rem', borderRadius: '1rem', borderLeft: '5px solid var(--primary)', boxShadow: '0 2px 10px rgba(0,0,0,0.02)' }}>
+              <div style={{ marginBottom: '1.5rem', background: 'rgba(255,255,255,0.03)', padding: '1rem 1.25rem', borderRadius: '1rem', borderLeft: '5px solid var(--primary)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>
                 <div style={{ color: '#64748b', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.25rem' }}>{c.metricTitle}</div>
                 <div style={{ fontSize: '2.8rem', fontWeight: 900, color: 'var(--primary)', lineHeight: 1, letterSpacing: '-1.5px' }}>{c.metricValue}</div>
               </div>
 
               <div className="grid grid-2 gap-4" style={{ marginBottom: '2.5rem' }}>
-                <div style={{ padding: '0.8rem 1rem', background: '#f8fafc', borderRadius: '0.75rem', border: '1px solid #e2e8f0', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                <div style={{ padding: '0.8rem 1rem', background: 'rgba(239,68,68,0.1)', borderRadius: '0.75rem', border: '1px solid rgba(239,68,68,0.2)' }}>
                   <div style={{ color: '#94a3b8', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.beforeLabel}</div>
                   <div style={{ fontWeight: 800, color: '#ef4444', fontSize: '1rem' }}>{c.beforeValue}</div>
                 </div>
-                <div style={{ padding: '0.8rem 1rem', background: '#f0fdf4', borderRadius: '0.75rem', border: '1px solid #bbf7d0', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-                  <div style={{ color: '#16a34a', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.afterLabel}</div>
-                  <div style={{ fontWeight: 800, color: '#16a34a', fontSize: '1rem' }}>{c.afterValue}</div>
+                <div style={{ padding: '0.8rem 1rem', background: 'rgba(16,185,129,0.1)', borderRadius: '0.75rem', border: '1px solid rgba(16,185,129,0.2)' }}>
+                  <div style={{ color: '#10b981', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.afterLabel}</div>
+                  <div style={{ fontWeight: 800, color: '#10b981', fontSize: '1rem' }}>{c.afterValue}</div>
                 </div>
               </div>
 
