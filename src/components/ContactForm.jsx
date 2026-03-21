@@ -41,8 +41,8 @@ const ContactForm = ({ isModal = false }) => {
         type: 'contact_form'
       });
 
-      // Background sync to Google Sheets
-      syncToGoogleSheets({ ...formData, revenueGoal: revenue }, 'lead');
+      // Wait for background sync to Google Sheets
+      await syncToGoogleSheets({ ...formData, revenueGoal: revenue }, 'lead');
 
       setSubmitted(true);
       // Wait bit before clearing

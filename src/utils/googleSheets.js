@@ -1,32 +1,36 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyojXK93mQb9YY7NvjN8dyUyFe-Js33Vu9EFV-Ae8vHOqkA0D7fp8vAHqzoWD2Yb4U/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8aF9EzL0CpKWecVYytjld-rjv6BI0D_HhqqzJeCWJrixmq2_7FIv59Q_vtSJoE5E/exec";
 
 export const syncToGoogleSheets = async (data, type = 'lead') => {
   if (!GOOGLE_SCRIPT_URL) {
-    console.warn("Google Sheets Sync: URL not configured.");
+    console.error("Google Sheets Sync: URL not found.");
     return;
   }
 
   try {
-    const payload = {
-      ...data,
-      type,
-      timestamp: new Date().toISOString(),
-      source: 'GrowthApex Web'
-    };
+    const params = new URLSearchParams();
+    params.append('type', type);
+    params.append('email', data.email || '');
+    params.append('phone', data.phone || '');
+    params.append('niche', data.niche || '');
+    params.append('adSpend', data.adSpend || '');
+    params.append('socials', data.socials || '');
+    params.append('revenueGoal', Array.isArray(data.revenueGoal) ? data.revenueGoal.join(', ') : (data.revenueGoal || ''));
 
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors", // Required for Google Apps Script Web App
+    // We use no-cors because Google doesn't return CORS headers for redirects
+    // This will ALWAYS return an opaque response (status 0), but the request DOES land on Google's server.
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      cache: 'no-cache',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: JSON.stringify(payload),
+      body: params.toString()
     });
 
-    console.log("Synced to Google Sheets");
+    console.log("Lead successfully beamed to Google Hub!");
     return true;
-  } catch (error) {
-    console.error("Error syncing to Google Sheets:", error);
-    return false;
+  } catch (err) {
+    console.error("Critical: Google Sheets beam failed", err);
   }
 };

@@ -1,48 +1,65 @@
-// PASTE THIS IN YOUR GOOGLE APPS SCRIPT EDITOR
+// HIGH-COMPATIBILITY GOOGLE APPS SCRIPT CODE
 
 function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000); // 10s wait for previous processes
+  
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = JSON.parse(e.postData.contents);
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var data = {};
     
-    // Check for correct sheet based on type
-    var sheetName = data.type === 'newsletter' ? 'Newsletter' : 'Leads';
-    var targetSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
-    
-    // Create sheet if not exist
-    if (!targetSheet) {
-      targetSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet(sheetName);
-      
-      // Add headers
-      if (data.type === 'newsletter') {
-        targetSheet.appendRow(['Date', 'Email', 'Source']);
-      } else {
-        targetSheet.appendRow(['Date', 'Email', 'Phone', 'Niche', 'Ad Spend', 'Socials', 'Revenue Goal', 'Source']);
+    // Attempt to parse data from all possible sources (form or json)
+    if (e.postData && e.postData.contents) {
+      try {
+        data = JSON.parse(e.postData.contents);
+      } catch (err) {
+        // Not JSON, use parameters instead
+        data = e.parameter;
       }
-    }
-    
-    // Append data
-    if (data.type === 'newsletter') {
-      targetSheet.appendRow([
-        new Date(),
-        data.email,
-        data.source || 'Direct'
-      ]);
     } else {
-      targetSheet.appendRow([
-        new Date(),
-        data.email,
-        data.phone,
-        data.niche,
-        data.adSpend,
-        data.socials,
-        Array.isArray(data.revenueGoal) ? data.revenueGoal.join(', ') : data.revenueGoal,
-        data.source || 'Direct'
-      ]);
+      data = e.parameter;
     }
     
-    return ContentService.createTextOutput(JSON.stringify({result: "success"})).setMimeType(ContentService.MimeType.JSON);
-  } catch (f) {
-    return ContentService.createTextOutput(JSON.stringify({result: "error", error: f.toString()})).setMimeType(ContentService.MimeType.JSON);
+    // Map data fields
+    var type = data.type || 'lead';
+    var email = data.email || 'N/A';
+    var phone = data.phone || 'N/A';
+    var niche = data.niche || 'N/A';
+    var adSpend = data.adSpend || 'N/A';
+    var socials = data.socials || 'N/A';
+    var revenueGoal = data.revenueGoal || 'N/A';
+    var timestamp = new Date();
+
+    var sheetName = type === 'newsletter' ? 'Newsletter' : 'Leads';
+    var targetSheet = ss.getSheetByName(sheetName);
+    
+    if (!targetSheet) {
+      targetSheet = ss.insertSheet(sheetName);
+      if (type === 'newsletter') {
+        targetSheet.appendRow(['Timestamp', 'Email']);
+      } else {
+        targetSheet.appendRow(['Timestamp', 'Email', 'Phone', 'Niche', 'Ad Spend', 'Socials', 'Revenue Goal']);
+      }
+      targetSheet.getRange(1, 1, 1, targetSheet.getLastColumn()).setFontWeight("bold").setBackground("#e0e0e0");
+    }
+    
+    if (type === 'newsletter') {
+      targetSheet.appendRow([timestamp, email]);
+    } else {
+      targetSheet.appendRow([timestamp, email, phone, niche, adSpend, socials, revenueGoal]);
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({"result": "success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({"result": "error", "message": error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
   }
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput("GrowthApex Connect is LIVE. Use POST method to send leads.");
 }
