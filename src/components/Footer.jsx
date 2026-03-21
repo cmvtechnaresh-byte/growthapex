@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { syncToGoogleSheets } from '../utils/googleSheets';
 
 const Footer = ({ onOpenModal }) => {
   const [email, setEmail] = useState('');
@@ -19,6 +20,10 @@ const Footer = ({ onOpenModal }) => {
         email,
         createdAt: serverTimestamp(),
       });
+      
+      // Sync to Google Sheets
+      syncToGoogleSheets({ email }, 'newsletter');
+
       setStatus('success');
       setEmail('');
       setTimeout(() => setStatus(''), 5000);

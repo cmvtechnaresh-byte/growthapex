@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, Mail, Globe, Phone, PartyPopper } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { syncToGoogleSheets } from '../utils/googleSheets';
 
 const ContactForm = ({ isModal = false }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -39,6 +40,10 @@ const ContactForm = ({ isModal = false }) => {
         createdAt: serverTimestamp(),
         type: 'contact_form'
       });
+
+      // Background sync to Google Sheets
+      syncToGoogleSheets({ ...formData, revenueGoal: revenue }, 'lead');
+
       setSubmitted(true);
       // Wait bit before clearing
       setFormData({ email: '', phone: '', niche: '', adSpend: '', socials: '' });

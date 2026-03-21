@@ -1,0 +1,48 @@
+// PASTE THIS IN YOUR GOOGLE APPS SCRIPT EDITOR
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    
+    // Check for correct sheet based on type
+    var sheetName = data.type === 'newsletter' ? 'Newsletter' : 'Leads';
+    var targetSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+    
+    // Create sheet if not exist
+    if (!targetSheet) {
+      targetSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet(sheetName);
+      
+      // Add headers
+      if (data.type === 'newsletter') {
+        targetSheet.appendRow(['Date', 'Email', 'Source']);
+      } else {
+        targetSheet.appendRow(['Date', 'Email', 'Phone', 'Niche', 'Ad Spend', 'Socials', 'Revenue Goal', 'Source']);
+      }
+    }
+    
+    // Append data
+    if (data.type === 'newsletter') {
+      targetSheet.appendRow([
+        new Date(),
+        data.email,
+        data.source || 'Direct'
+      ]);
+    } else {
+      targetSheet.appendRow([
+        new Date(),
+        data.email,
+        data.phone,
+        data.niche,
+        data.adSpend,
+        data.socials,
+        Array.isArray(data.revenueGoal) ? data.revenueGoal.join(', ') : data.revenueGoal,
+        data.source || 'Direct'
+      ]);
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({result: "success"})).setMimeType(ContentService.MimeType.JSON);
+  } catch (f) {
+    return ContentService.createTextOutput(JSON.stringify({result: "error", error: f.toString()})).setMimeType(ContentService.MimeType.JSON);
+  }
+}
