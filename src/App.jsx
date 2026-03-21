@@ -13,6 +13,7 @@ import Process from './components/Process';
 import ContactForm from './components/ContactForm';
 import ContactModal from './components/ContactModal';
 import Footer from './components/Footer';
+import Clients from './components/Clients';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 
@@ -24,6 +25,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 const HomePage = ({ onOpenModal }) => (
   <>
     <Hero onOpenModal={onOpenModal} />
+    <Clients />
     <AboutUs />
     <Stats />
     <Services />
