@@ -292,7 +292,7 @@ const ContactForm = ({ isModal = false }) => {
                  <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(224,32,53,0.1)', border: '1px solid rgba(224,32,53,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', boxShadow: '0 0 20px rgba(224,32,53,0.1)' }}><Phone size={22}/></div>
                  <div>
                     <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#64748b', letterSpacing: '1px' }}>CALL US</div>
-                    <div style={{ fontWeight: 700, color: '#f1f5f9' }}>+91 870 755 7531</div>
+                    <div style={{ fontWeight: 700, color: '#f1f5f9' }}>+91 92176 48531</div>
                  </div>
                </div>
                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

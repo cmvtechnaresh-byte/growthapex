@@ -147,7 +147,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
                         <div className="modal-icon-box"><Phone size={22}/></div>
                         <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#64748b', letterSpacing: '1px' }}>CALL US</div>
-                        <div style={{ fontWeight: 700, color: '#f1f5f9', fontSize: '1.05rem' }}>+91 870 755 7531</div>
+                        <div style={{ fontWeight: 700, color: '#f1f5f9', fontSize: '1.05rem' }}>+91 92176 48531</div>
                      </div>
                   </div>
                </div>

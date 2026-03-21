@@ -33,57 +33,73 @@ const cases = [
   }
 ];
 
+import aarush from '../assets/client/Aarush_Bhola.jpeg';
+import nandan from '../assets/client/Coach Nandan.jpg';
+import mannu from '../assets/client/Mannu Chaudhary.png';
+import rahul from '../assets/client/Rahul Chaudhary.jpg';
+import sujoy from '../assets/client/Sujoy das.jpg';
+import yash from '../assets/client/Yash Sharma.jpg';
+import deepak from '../assets/client/deepak baja.jpg';
+import jitesh from '../assets/client/jitesh pant.jpg';
+import saurav from '../assets/client/saurav singha.jpg';
+
 // ── Testimonials for the auto-slider ──────────────────────────────────────────
 const testimonials = [
   {
-    quote: "The strategy call alone gave us more clarity than 3 months working with our previous agency.",
-    name: "Alok J.",
-    role: "Fitness Brand Founder",
-    initials: "AJ",
-    gradient: "linear-gradient(135deg, #A21527, #8b5cf6)",
-  },
-  {
-    quote: "Within 45 days our cost per lead dropped from ₹850 to ₹210. GrowthApex doesn't just run ads — they build systems.",
-    name: "Rohan M.",
-    role: "Business Consultant",
-    initials: "RM",
-    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
-  },
-  {
-    quote: "We went from 50 webinar registrations a month to over 1,200. The automation alone saved us 20 hours a week.",
-    name: "Priya S.",
-    role: "Online Education Brand",
-    initials: "PS",
-    gradient: "linear-gradient(135deg, #10b981, #3b82f6)",
-  },
-  {
-    quote: "GrowthApex transformed my content strategy and reach. As a filmmaker, I needed a brand that looked as good as my work — they delivered that plus a system that generates leads.",
-    name: "Vijay Singh",
-    role: "Filmmaker",
-    initials: "VS",
-    img: vijayImg,
+    quote: "GrowthApex doesn't just run ads — they build systems. Within 45 days our cost per lead dropped from ₹850 to ₹210.",
+    name: "Aarush Bhola",
+    role: "Impact Creator",
+    img: aarush,
     gradient: "linear-gradient(135deg, #e02035, #ff6b6b)",
   },
   {
-    quote: "I was skeptical of agencies but GrowthApex treated my brand like their own. Revenue went from ₹1.5L to ₹8L monthly.",
-    name: "Deepak R.",
-    role: "Career Mentor & Coach",
-    initials: "DR",
-    gradient: "linear-gradient(135deg, #6366f1, #ec4899)",
-  },
-  {
-    quote: "The VSL funnel they built for us converts at 34%. We've never seen numbers like this in 6 years of running our company.",
-    name: "Kavita N.",
-    role: "Health & Wellness Coach",
-    initials: "KN",
+    quote: "The strategy call alone gave us more clarity than 3 months working with our previous agency.",
+    name: "Coach Nandan",
+    role: "Systems Expert",
+    img: nandan,
     gradient: "linear-gradient(135deg, #A21527, #f59e0b)",
   },
   {
-    quote: "GrowthApex helped us get featured in 3 major publications and our brand authority shot through the roof. Real results.",
-    name: "Sameer T.",
-    role: "Digital Brand Founder",
-    initials: "ST",
+    quote: "We went from occasional leads to over 1,200 registrations a month. The automation alone saved us 20 hours a week.",
+    name: "Rahul Chaudhary",
+    role: "Growth Catalyst",
+    img: rahul,
+    gradient: "linear-gradient(135deg, #10b981, #3b82f6)",
+  },
+  {
+    quote: "If you're looking for predictable results and a team that actually treats your brand like their own, this is it.",
+    name: "Deepak Bajaj",
+    role: "Strategic Partner",
+    img: deepak,
+    gradient: "linear-gradient(135deg, #6366f1, #ec4899)",
+  },
+  {
+    quote: "Their approach to social media is years ahead of the curve. They turned our attention into a revenue-generating machine.",
+    name: "Yash Sharma",
+    role: "Fitness Authority",
+    img: yash,
     gradient: "linear-gradient(135deg, #0ea5e9, #8b5cf6)",
+  },
+  {
+    quote: "The ROI we've seen since switching to GrowthApex is unmatched. They are truly the architects of impact.",
+    name: "Jitesh Pant",
+    role: "Digital Visionary",
+    img: jitesh,
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
+  },
+  {
+    quote: "Unbelievable efficiency. They scaled our operations while reducing our mental load significantly.",
+    name: "Mannu Chaudhary",
+    role: "Scale Master",
+    img: mannu,
+    gradient: "linear-gradient(135deg, #A21527, #8b5cf6)",
+  },
+  {
+    quote: "Highly recommended for any serious brand looking to dominate their market with data-driven precision.",
+    name: "Sujoy Das",
+    role: "Motivation Leader",
+    img: sujoy,
+    gradient: "linear-gradient(135deg, #6366f1, #ec4899)",
   },
 ];
 
@@ -204,7 +220,6 @@ const TestimonialSlider = () => {
               </div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--text-primary)' }}>{t.name}</div>
-                <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', fontWeight: 500 }}>{t.role}</div>
               </div>
             </div>
           </motion.div>

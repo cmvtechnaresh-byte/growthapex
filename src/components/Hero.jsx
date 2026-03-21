@@ -110,8 +110,8 @@ const Hero = ({ onOpenModal }) => {
             margin: '0 auto 3rem auto',
           }}
         >
-          Full-stack social media &amp; performance marketing systems
-          designed to turn attention into revenue.
+          We don’t work as an agency vendor. <br />
+          We work as your <span style={{ color: 'var(--primary)', fontWeight: 700 }}>growth partner</span>.
         </motion.p>
 
         {/* CTA Buttons */}
