@@ -119,14 +119,14 @@ const BlogPage = () => {
         /* ── Blog page styles ─────────────────────── */
         .blog-page-hero {
           padding: 10rem 0 5rem;
-          background: #09090f;
+          background: #111827;
           position: relative; overflow: hidden;
         }
         .blog-page-hero::before {
           content: '';
           position: absolute; top: -10%; right: -5%;
           width: 800px; height: 800px;
-          background: radial-gradient(circle, rgba(224,32,53,0.1) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(4, 190, 150, 0.08) 0%, transparent 70%);
           border-radius: 50%; pointer-events: none;
         }
         .blog-hero-inner { text-align: center; max-width: 780px; margin: 0 auto; }
@@ -134,11 +134,13 @@ const BlogPage = () => {
           font-family: var(--font-heading);
           font-size: clamp(2.8rem, 6vw, 4.5rem);
           font-weight: 900; line-height: 1.1; letter-spacing: -2px;
-          color: #f1f5f9; margin-bottom: 1.5rem;
+          color: #ffffff; margin-bottom: 1.5rem;
         }
         .blog-hero-title span {
-          background: linear-gradient(135deg, var(--primary) 0%, #ff6b6b 100%);
-          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+          color: #04BE96;
+          -webkit-text-fill-color: #04BE96;
+          background: none;
+          text-shadow: 0 0 40px rgba(4, 190, 150, 0.3);
         }
         .blog-hero-sub { color: #94a3b8; font-size: 1.25rem; line-height: 1.75; margin-bottom: 2.5rem; }
         /* Stats strip */
@@ -147,7 +149,7 @@ const BlogPage = () => {
           flex-wrap: wrap; margin-top: 2.5rem;
         }
         .blog-stat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 700; color: #64748b; }
-        .blog-stat svg { color: #e02035; filter: drop-shadow(0 0 8px rgba(224,32,53,0.4)); }
+        .blog-stat svg { color: #04BE96; filter: drop-shadow(0 0 8px rgba(4, 190, 150, 0.4)); }
         /* Search */
         .blog-search-wrap {
           position: relative; max-width: 480px; margin: 2rem auto 0;
@@ -155,16 +157,17 @@ const BlogPage = () => {
         .blog-search {
           width: 100%; padding: 1rem 1.25rem 1rem 3.5rem;
           border-radius: 99px;
-          border: 1.5px solid rgba(255,255,255,0.1);
-          background: rgba(255,255,255,0.05);
+          border: 1.5px solid rgba(255,255,255,0.08);
+          background: rgba(255,255,255,0.04);
           font-size: 1rem;
           font-family: var(--font-body);
-          color: #f1f5f9;
+          color: #f8fafc;
           outline: none;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.3);
           transition: all 0.25s ease;
         }
-        .blog-search:focus { border-color: var(--primary); background: rgba(255,255,255,0.08); }
+        .blog-search::placeholder { color: #64748b; }
+        .blog-search:focus { border-color: #04BE96; background: rgba(4,190,150,0.05); box-shadow: 0 0 0 3px rgba(4,190,150,0.15); }
         .blog-search-icon { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: #64748b; }
         /* Category chips */
         .cat-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem; }
@@ -180,41 +183,42 @@ const BlogPage = () => {
           font-size: 0.75rem; font-weight: 700; line-height: 1;
         }
         .meta-row { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
-        .meta-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; color: #94a3b8; font-weight: 500; }
+        .meta-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; color: #64748b; font-weight: 500; }
         /* Featured card */
         .featured-card {
           display: grid;
           grid-template-columns: 1.1fr 1fr;
           border-radius: 2rem; overflow: hidden;
           background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.08);
-          boxShadow: 0 30px 60px rgba(0,0,0,0.4);
+          border: 1px solid rgba(255,255,255,0.07);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.35);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           position: relative;
         }
-        .featured-card:hover { transform: translateY(-8px); boxShadow: 0 40px 80px rgba(224,32,53,0.15); border-color: rgba(224,32,53,0.3); }
+        .featured-card:hover { transform: translateY(-6px); box-shadow: 0 40px 80px rgba(4,190,150,0.08); border-color: rgba(4,190,150,0.25); }
         .featured-img-wrap { position: relative; overflow: hidden; min-height: 340px; }
         .featured-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
         .featured-card:hover .featured-img { transform: scale(1.04); }
-        .featured-img-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.12) 0%, transparent 100%); }
+        .featured-img-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.25) 0%, transparent 100%); }
         .featured-badge {
           position: absolute; top: 1.25rem; left: 1.25rem;
-          background: var(--primary); color: #fff;
+          background: #04BE96; color: #fff;
           padding: 0.3rem 0.9rem; border-radius: 99px;
           font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
         }
         .featured-copy {
           padding: 2.75rem; display: flex; flex-direction: column; justify-content: center;
+          background: rgba(255,255,255,0.02);
         }
         .featured-title {
           font-family: var(--font-heading);
           font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-          font-weight: 800; line-height: 1.2; color: #f1f5f9; margin-bottom: 1.25rem;
+          font-weight: 800; line-height: 1.2; color: #f8fafc; margin-bottom: 1.25rem;
         }
-        .featured-excerpt { color: #64748b; line-height: 1.75; font-size: 0.97rem; margin-bottom: 1.75rem; }
+        .featured-excerpt { color: #94a3b8; line-height: 1.75; font-size: 0.97rem; margin-bottom: 1.75rem; }
         .read-cta {
           display: inline-flex; align-items: center; gap: 0.5rem;
-          color: var(--primary); font-weight: 700; font-size: 0.9rem;
+          color: #04BE96; font-weight: 700; font-size: 0.9rem;
           transition: gap 0.2s ease;
         }
         .read-cta:hover { gap: 0.75rem; }
@@ -229,27 +233,27 @@ const BlogPage = () => {
           background: rgba(255,255,255,0.03);
           border-radius: 1.75rem;
           overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.07);
+          border: 1px solid rgba(255,255,255,0.06);
           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
           display: flex; flex-direction: column;
           transition: all 0.3s ease;
         }
-        .post-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.5); border-color: rgba(224,32,53,0.3); }
+        .post-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.4); border-color: rgba(4,190,150,0.2); }
         .post-card-img-wrap { position: relative; overflow: hidden; height: 200px; flex-shrink: 0; }
         .post-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; display: block; }
         .post-card:hover .post-card-img { transform: scale(1.05); }
         .post-cat-pill { position: absolute; top: 0.85rem; left: 0.85rem; }
-        .post-card-body { padding: 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+        .post-card-body { padding: 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; background: transparent; }
         .post-card-title {
           font-family: var(--font-heading); font-size: 1.2rem;
-          font-weight: 800; line-height: 1.35; color: #f1f5f9; margin-bottom: 0.75rem;
+          font-weight: 800; line-height: 1.35; color: #f8fafc; margin-bottom: 0.75rem;
         }
         .post-card-excerpt {
-          color: #64748b; font-size: 0.87rem; line-height: 1.65;
+          color: #94a3b8; font-size: 0.87rem; line-height: 1.65;
           display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
         }
         /* Empty state */
-        .empty-state { text-align: center; padding: 5rem 0; color: #94a3b8; }
+        .empty-state { text-align: center; padding: 5rem 0; color: #64748b; }
         .empty-state svg { margin: 0 auto 1rem; display: block; opacity: 0.4; }
 
         @media (max-width: 900px) {
@@ -306,7 +310,7 @@ const BlogPage = () => {
       </div>
 
       {/* ── Main content ── */}
-      <main style={{ padding: '4rem 0 7rem', background: '#09090f' }}>
+      <main style={{ padding: '4rem 0 7rem', background: '#111827' }}>
         <div className="container">
 
           {/* Category filter */}
@@ -319,10 +323,10 @@ const BlogPage = () => {
                   className="cat-chip"
                   onClick={() => { setActiveCategory(cat); setSearch(''); }}
                   style={{
-                    background: active ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
+                    background: active ? '#04BE96' : 'rgba(255,255,255,0.05)',
                     color: active ? '#fff' : '#94a3b8',
-                    borderColor: active ? 'var(--primary)' : 'rgba(255,255,255,0.1)',
-                    boxShadow: active ? '0 8px 24px rgba(224,32,53,0.3)' : '0 2px 10px rgba(0,0,0,0.2)',
+                    borderColor: active ? '#04BE96' : 'rgba(255,255,255,0.08)',
+                    boxShadow: active ? '0 8px 24px rgba(4,190,150,0.3)' : 'none',
                   }}
                   aria-pressed={active}
                 >
@@ -348,7 +352,7 @@ const BlogPage = () => {
                   {/* Grid */}
                   {rest.length > 0 && (
                     <section aria-label="More articles">
-                      <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.5rem' }}>
+                      <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.5rem' }}>
                         More Articles
                       </h2>
                       <div className="posts-grid">

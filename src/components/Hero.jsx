@@ -1,7 +1,41 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import heroBg from '../assets/video (2).mp4';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+import {
+  ArrowRight,
+  TrendingUp,
+  Layers,
+  UserCheck,
+  Activity,
+  Share2,
+  Instagram,
+  ArrowDown
+} from 'lucide-react';
+
+const AnimatedNumber = ({ value, duration = 2 }) => {
+  const ref = useRef(null);
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    duration: duration * 1000,
+    bounce: 0,
+  });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [isInView, motionValue, value]);
+
+  useEffect(() => {
+    const unsubscribe = springValue.on('change', (latest) => {
+      setDisplayValue(Math.round(latest));
+    });
+    return unsubscribe;
+  }, [springValue]);
+
+  return <span ref={ref}>{displayValue}</span>;
+};
 
 const Hero = ({ onOpenModal }) => {
   return (
@@ -11,149 +45,308 @@ const Hero = ({ onOpenModal }) => {
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: '8rem',
-        paddingBottom: '6rem',
+        paddingTop: '160px',
+        paddingBottom: '100px',
         position: 'relative',
         overflow: 'hidden',
-        textAlign: 'center',
+        background: '#111827', // Very dark background
+        color: '#ffffff'
       }}
     >
-      {/* ── Background Video (Black & White) ── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
+      {/* ── Background Accents ── */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.08, 0.12, 0.08]
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         style={{
           position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          filter: 'grayscale(100%) brightness(0.7)',
+          top: '10%',
+          right: '-5%',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(4, 190, 150, 0.1) 0%, transparent 70%)',
           zIndex: 0,
+          pointerEvents: 'none'
         }}
-      >
-        <source src={heroBg} type="video/mp4" />
-      </video>
+      />
+      <motion.div
+        animate={{
+          scale: [1.2, 1, 1.2],
+          opacity: [0.08, 0.12, 0.08]
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: 'absolute',
+          bottom: '5%',
+          left: '-5%',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(22, 78, 170, 0.1) 0%, transparent 70%)',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}
+      />
 
+      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+        <div className="grid grid-2" style={{ gap: '4rem', alignItems: 'flex-start' }}>
 
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 1,
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(9,9,15,0.75) 55%, rgba(9,9,15,1) 100%)',
-      }} />
+          {/* ── Left Column: Content ── */}
+          <div style={{ textAlign: 'left', paddingLeft: 0, marginLeft: 0 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              style={{
+                display: 'inline-flex',
+                padding: '0.6rem 1.2rem',
+                background: 'rgba(4, 190, 150, 0.15)',
+                color: '#04BE96',
+                borderRadius: '100px',
+                fontSize: '0.9rem',
+                fontWeight: 700,
+                marginBottom: '2rem',
+                border: '1px solid rgba(4, 190, 150, 0.2)'
+              }}
+            >
+              Full Stack Growth Agency
+            </motion.div>
 
-      {/* ── Layer 2: Subtle red glow accent ── */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 2,
-        pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(224,32,53,0.1) 0%, transparent 70%)',
-      }} />
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{
+                fontSize: 'clamp(2.5rem, 5.5vw, 4.2rem)',
+                fontWeight: 900,
+                lineHeight: 1.1,
+                marginBottom: '1.5rem',
+                letterSpacing: '-2px',
+                color: '#ffffff'
+              }}
+            >
+              We don't run <br />
+              your marketing. <br />
+              <span style={{
+                color: '#04BE96',
+                fontSize: '0.82em',
+                display: 'block',
+                marginTop: '0.5rem',
+                textShadow: '0 0 40px rgba(4, 190, 150, 0.2)'
+              }}>
+                We build your <br />
+                entire growth engine.
+              </span>
+            </motion.h1>
 
-      {/* ── Hero Content ── */}
-      <div className="container" style={{ position: 'relative', zIndex: 3, maxWidth: '900px' }}>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              style={{
+                fontSize: '1.15rem',
+                color: '#94a3b8',
+                lineHeight: 1.65,
+                maxWidth: '520px',
+                marginBottom: '1.5rem'
+              }}
+            >
+              From social media to performance ads, funnels to lead nurturing, sales training to fixing leakages — one team, one goal, one outcome.
+            </motion.p>
 
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="badge" style={{ marginBottom: '2rem', display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }} />
-            Your Full-Stack Growth Partner
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              style={{
+                fontSize: '1.4rem',
+                fontWeight: 700,
+                color: '#04BE96',
+                marginBottom: '3rem'
+              }}
+            >
+              We take you to the Apex.
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              style={{ display: 'flex', gap: '1.5rem', marginBottom: '5rem', flexWrap: 'wrap' }}
+            >
+              <button
+                onClick={onOpenModal}
+                className="btn btn-glow"
+                style={{
+                  background: '#04BE96',
+                  color: '#fff',
+                  padding: '1.25rem 2.8rem',
+                  borderRadius: '14px',
+                  fontWeight: 900,
+                  fontSize: '1.1rem',
+                  boxShadow: '0 10px 40px rgba(4, 190, 150, 0.3)',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                Book a free growth audit
+              </button>
+              <button
+                className="btn"
+                style={{
+                  background: 'transparent',
+                  color: '#fff',
+                  padding: '1.25rem 2.8rem',
+                  borderRadius: '14px',
+                  fontWeight: 700,
+                  fontSize: '1.1rem',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  cursor: 'pointer'
+                }}
+              >
+                See our work
+              </button>
+            </motion.div>
+
+            {/* Stats Row with stagger */}
+            <div style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap' }}>
+              {[
+                { val: 20, label: "Brands grown", suffix: "+" },
+                { val: 3, label: "Avg lead growth", suffix: "x" },
+                { val: 6, label: "Months to results", suffix: "" }
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 + (i * 0.1) }}
+                  style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}
+                >
+                  <div>
+                    <div style={{ fontSize: '2.4rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>
+                      <AnimatedNumber value={stat.val} />{stat.suffix}
+                    </div>
+                    <div style={{ fontSize: '0.85rem', color: '#64748b', textTransform: 'uppercase', fontWeight: 800, marginTop: '0.5rem', letterSpacing: '0.5px' }}>
+                      {stat.label.split(' ').map((w, j) => <React.Fragment key={j}>{w}<br /></React.Fragment>)}
+                    </div>
+                  </div>
+                  {i < 2 && <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.1)' }} />}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.1 }}
-          style={{
-            fontSize: 'clamp(3.2rem, 6vw, 6.2rem)',
-            fontWeight: 700,
-            lineHeight: 1.0,
-            fontFamily: 'var(--font-heading)',
-            color: '#f1f5f9',
-            marginBottom: '1.rem',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          Scale Your Brand with{' '}
-          <span style={{
-            background: 'linear-gradient(135deg, #e02035 0%, #ff6b6b 60%, #ff9e5e 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            Data-Driven Growth
-          </span>
-        </motion.h1>
-
-        {/* Subheading */}
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.2 }}
-          style={{
-            fontSize: 'clamp(1.15rem, 2.2vw, 1.45rem)',
-            color: '#94a3b8',
-            fontWeight: 500,
-            lineHeight: 1.7,
-            maxWidth: '680px',
-            margin: '0 auto 3rem auto',
-          }}
-        >
-          We don’t work as an agency vendor. <br />
-          We work as your <span style={{ color: 'var(--primary)', fontWeight: 700 }}>growth partner</span>.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.3 }}
-          style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '4rem' }}
-        >
-          <button
-            onClick={onOpenModal}
-            className="btn btn-primary btn-glow"
+          {/* ── Right Column: Card List ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             style={{
-              padding: '1.15rem 2.75rem',
-              fontSize: '1.1rem',
-              borderRadius: '0.875rem',
-              boxShadow: '0 20px 50px rgba(224,32,53,0.4)',
+              background: 'rgba(255,255,255,0.03)',
+              borderRadius: '2.5rem',
+              border: '2px solid rgba(255,255,255,0.05)',
+              padding: '3.5rem',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 40px 100px rgba(0,0,0,0.2)'
             }}
           >
-            Get Started
-          </button>
-          <a
-            href="#results"
-            className="btn btn-outline"
-            style={{
-              padding: '1.15rem 2.25rem',
-              fontSize: '1.1rem',
-              borderRadius: '0.875rem',
-              backdropFilter: 'blur(8px)',
-              background: 'rgba(255,255,255,0.05)',
-            }}
-          >
-            See Results <ArrowRight size={18} />
-          </a>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              style={{ fontSize: '0.85rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '2px', marginBottom: '2.5rem', textTransform: 'uppercase' }}
+            >
+              WHAT WE BUILD FOR YOU
+            </motion.div>
 
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+              {[
+                { title: "End-to-end social media", desc: "Strategy → Script → Edit → Post", Icon: Instagram },
+                { title: "Performance marketing", desc: "Meta, Google & more", Icon: TrendingUp },
+                { title: "Full funnel creation", desc: "Landing pages to checkout", Icon: Layers },
+                { title: "Lead nurturing & sales training", desc: "Convert leads into revenue", Icon: UserCheck },
+                { title: "Fixing growth leakages", desc: "Stop losing paid leads", Icon: Activity },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.9 + (idx * 0.1), duration: 0.5 }}
+                  whileHover={{ x: 10, background: 'rgba(255,255,255,0.04)', transition: { duration: 0.2 } }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1.5rem',
+                    padding: '1.5rem',
+                    borderRadius: '1.2rem',
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.05)',
+                    cursor: 'default',
+                    transition: 'border 0.2s'
+                  }}
+                >
+                  <div style={{
+                    width: '52px',
+                    height: '52px',
+                    borderRadius: '12px',
+                    background: 'rgba(4, 190, 150, 0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#04BE96'
+                  }}>
+                    <item.Icon size={24} />
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: '1.1rem', color: '#f8fafc' }}>{item.title}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.95rem' }}>{item.desc}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+              style={{
+                marginTop: '2.5rem',
+                padding: '1.5rem 2rem',
+                background: 'rgba(4, 190, 150, 0.08)',
+                borderRadius: '1.2rem',
+                border: '1px solid rgba(4, 190, 150, 0.15)',
+                color: '#94a3b8',
+                fontSize: '0.95rem',
+                lineHeight: 1.5,
+                fontWeight: 500,
+                textAlign: 'center'
+              }}
+            >
+              We only work with clients we know we can grow.
+            </motion.div>
+          </motion.div>
+        </div>
 
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          .hero-section { padding-top: 7rem !important; }
+        .hero-section .grid-2 {
+          display: grid;
+          grid-template-columns: 1fr 0.9fr;
+        }
+        .btn-glow:hover {
+          filter: brightness(1.1);
+          transform: translateY(-2px);
+        }
+        @media (max-width: 1200px) {
+          .hero-section .grid-2 {
+            grid-template-columns: 1fr;
+            gap: 5rem;
+          }
+          .hero-section { padding-top: 140px; text-align: center; }
+          .hero-section h1, .hero-section p, .hero-section .stats-row { margin-left: auto; margin-right: auto; }
+          .hero-section .stats-row { justify-content: center; }
         }
       `}</style>
     </section>

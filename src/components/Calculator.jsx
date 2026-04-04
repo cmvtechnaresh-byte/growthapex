@@ -12,20 +12,22 @@ const Calculator = ({ onOpenModal }) => {
   const potentialGrowth = ((projectedRevenue - currentRevenue) / currentRevenue) * 100;
 
   return (
-    <section className="section" id="calculator" style={{ position: 'relative', overflow: 'hidden', background: '#09090f' }}>
+    <section className="section" id="calculator" style={{ position: 'relative', overflow: 'hidden', background: 'var(--bg-color)' }}>
       <div
         style={{
           position: 'absolute', top: '10%', right: '-10%', width: '400px', height: '400px',
-          background: 'radial-gradient(circle, rgba(224,32,53,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(22, 78, 170,0.08) 0%, transparent 70%)',
           zIndex: 0, pointerEvents: 'none'
         }}
       />
       <div className="container">
 
         <div className="text-center" style={{ marginBottom: '5rem' }}>
-          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 800 }}>* ROI CALCULATOR</div>
-          <h2 className="heading-xl" style={{ fontWeight: 700, lineHeight: 1.1 }}>
-            See Your <span className="text-gradient-primary">Growth Potential</span>
+          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            <span style={{ color: 'var(--primary)' }}>*</span> ROI CALCULATOR
+          </div>
+          <h2 style={{ fontWeight: 900, fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-2px' }}>
+            See Your <br /> <span className="text-gradient-primary">Growth Potential</span>
           </h2>
           <p className="text-muted" style={{ maxWidth: '750px', margin: '2rem auto 0', fontSize: '1.15rem', fontWeight: 500, lineHeight: 1.7 }}>
             Stop guessing your marketing impact. Use our data-driven growth model to project reach, leads, and revenue based on proven performance benchmarks.
@@ -39,9 +41,9 @@ const Calculator = ({ onOpenModal }) => {
             style={{
               padding: '3.5rem 3rem',
               borderRadius: '2.5rem',
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 30px 60px rgba(0,0,0,0.4)',
+              background: '#ffffff',
+              border: '1px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 30px 60px rgba(0,0,0,0.08)',
               position: 'relative',
               overflow: 'hidden'
             }}
@@ -51,8 +53,8 @@ const Calculator = ({ onOpenModal }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.25rem', alignItems: 'flex-end' }}>
-                  <label style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem', letterSpacing: '0.5px' }}>CURRENT MONTHLY REVENUE</label>
-                  <span style={{ color: '#f1f5f9', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-heading)' }}>₹{currentRevenue.toLocaleString()}</span>
+                  <label style={{ fontWeight: 700, color: '#475569', fontSize: '0.9rem', letterSpacing: '0.5px' }}>CURRENT MONTHLY REVENUE</label>
+                  <span style={{ color: '#0f172a', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-heading)' }}>₹{currentRevenue.toLocaleString()}</span>
                 </div>
                 <div className="slider-container">
                   <input
@@ -68,8 +70,8 @@ const Calculator = ({ onOpenModal }) => {
               </div>
               <div className="input-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.25rem', alignItems: 'flex-end' }}>
-                  <label style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem', letterSpacing: '0.5px' }}>MONTHLY AD BUDGET</label>
-                  <span style={{ color: '#f1f5f9', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-heading)' }}>₹{adBudget.toLocaleString()}</span>
+                  <label style={{ fontWeight: 700, color: '#475569', fontSize: '0.9rem', letterSpacing: '0.5px' }}>MONTHLY AD BUDGET</label>
+                  <span style={{ color: '#0f172a', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-heading)' }}>₹{adBudget.toLocaleString()}</span>
                 </div>
                 <div className="slider-container">
                   <input
@@ -84,9 +86,9 @@ const Calculator = ({ onOpenModal }) => {
                 </div>
               </div>
 
-              <div style={{ marginTop: '1rem', padding: '1.5rem', background: 'rgba(162,21,39,0.05)', borderRadius: '1.25rem', border: '1px solid rgba(162,21,39,0.15)' }}>
-                <p style={{ fontSize: '0.9rem', color: '#94a3b8', lineHeight: 1.6, fontWeight: 500 }}>
-                  <span style={{ color: 'var(--primary)', fontWeight: 800 }}>* NOTE:</span> This estimate is based on an average <span style={{ color: '#f1f5f9', fontWeight: 700 }}>{estimatedROAS}x ROAS</span>. High-ticket businesses often see much higher conversion returns.
+              <div style={{ marginTop: '1rem', padding: '1.5rem', background: 'rgba(22, 78, 170,0.05)', borderRadius: '1.25rem', border: '1px solid rgba(22, 78, 170,0.15)' }}>
+                <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: 1.6, fontWeight: 500 }}>
+                  <span style={{ color: 'var(--primary)', fontWeight: 800 }}>* NOTE:</span> This estimate is based on an average <span style={{ color: '#0f172a', fontWeight: 700 }}>{estimatedROAS}x ROAS</span>. High-ticket businesses often see much higher conversion returns.
                 </p>
               </div>
             </div>
@@ -101,11 +103,11 @@ const Calculator = ({ onOpenModal }) => {
           >
             <div
               style={{
-                background: 'linear-gradient(145deg, #e02035 0%, #a21527 100%)',
+                background: 'linear-gradient(145deg, var(--primary) 0%, var(--accent) 100%)',
                 padding: '4rem 3.5rem',
                 borderRadius: '2.5rem',
-                color: '#fff',
-                boxShadow: '0 40px 80px rgba(224,32,53,0.25)',
+                color: '#ffffff',
+                boxShadow: '0 40px 80px rgba(22, 78, 170,0.25)',
                 position: 'relative',
                 overflow: 'hidden'
               }}
@@ -130,7 +132,7 @@ const Calculator = ({ onOpenModal }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <div style={{ width: '56px', height: '56px', borderRadius: '16px', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <TrendingUp size={28} color="#fff" strokeWidth={3} />
+                      <TrendingUp size={28} color="#ffffff" strokeWidth={3} />
                     </div>
                     <div>
                       <div style={{ fontSize: '1.4rem', fontWeight: 700 }}>+{Math.round(potentialGrowth)}%</div>
@@ -142,7 +144,7 @@ const Calculator = ({ onOpenModal }) => {
                     onClick={() => onOpenModal && onOpenModal()}
                     className="btn"
                     style={{
-                      background: '#fff',
+                      background: '#ffffff',
                       color: 'var(--primary)',
                       padding: '1.25rem 2.25rem',
                       borderRadius: '1.25rem',
@@ -171,7 +173,7 @@ const Calculator = ({ onOpenModal }) => {
           -webkit-appearance: none;
           width: 100%;
           height: 6px;
-          background: rgba(255,255,255,0.1);
+          background: rgba(0,0,0,0.1);
           border-radius: 5px;
           outline: none;
           cursor: pointer;
@@ -185,12 +187,12 @@ const Calculator = ({ onOpenModal }) => {
           border: 3px solid #f1f5f9;
           border-radius: 50%;
           cursor: pointer;
-          box-shadow: 0 0 15px rgba(224,32,53,0.4);
+          box-shadow: 0 0 15px rgba(22, 78, 170,0.4);
           transition: all 0.2s;
         }
         .custom-range::-webkit-slider-thumb:hover {
           transform: scale(1.15);
-          box-shadow: 0 0 25px rgba(224,32,53,0.6);
+          box-shadow: 0 0 25px rgba(22, 78, 170,0.6);
         }
         @media (max-width: 1024px) {
            #calculator .grid-2 {

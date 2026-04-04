@@ -67,11 +67,11 @@ const ContactForm = ({ isModal = false }) => {
     <div 
        className="contact-form-card"
        style={{ 
-         background: isModal ? 'transparent' : 'rgba(255,255,255,0.03)', 
+         background: isModal ? 'transparent' : '#ffffff', 
          borderRadius: isModal ? '1.5rem' : '2rem', 
          padding: isModal ? '0' : '3.5rem 3rem',
          boxShadow: isModal ? 'none' : '0 25px 70px rgba(0,0,0,0.06)',
-         border: isModal ? 'none' : '1px solid #f1f5f9',
+         border: isModal ? 'none' : '1px solid rgba(0,0,0,0.08)',
          width: '100%',
          boxSizing: 'border-box',
          position: 'relative',
@@ -88,14 +88,14 @@ const ContactForm = ({ isModal = false }) => {
                position: 'absolute', 
                top: 0, left: 0, width: '100%', height: '100%', 
                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-               textAlign: 'center', padding: '2rem', zIndex: 10, background: isModal ? '#09090f' : 'rgba(9,9,15,0.98)', borderRadius: 'inherit'
+               textAlign: 'center', padding: '2rem', zIndex: 10, background: isModal ? 'var(--bg-color)' : 'rgba(9,9,15,0.98)', borderRadius: 'inherit'
              }}
            >
               <div style={{ width: '80px', height: '80px', background: 'rgba(34,197,94,0.1)', color: '#16a34a', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem' }}>
                  <Check size={40} strokeWidth={3} />
               </div>
-              <h3 style={{ fontSize: '2rem', fontWeight: 900, color: '#f1f5f9', marginBottom: '1rem' }}>Success!</h3>
-              <p style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: 1.6, maxWidth: '300px' }}>
+              <h3 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text-primary)', marginBottom: '1rem' }}>Success!</h3>
+              <p style={{ color: 'var(--text-primary)', fontSize: '1.2rem', lineHeight: 1.6, maxWidth: '300px' }}>
                 Your inquiry has been received. Our growth strategist will reach out within <span style={{ color: 'var(--primary)', fontWeight: 700 }}>24 hours</span>.
               </p>
               <button 
@@ -115,44 +115,44 @@ const ContactForm = ({ isModal = false }) => {
            >
              
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-               <label style={{ fontWeight: 700, color: isModal ? '#94a3b8' : '#374151', fontSize: '0.9rem' }}>Email *</label>
+               <label style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.9rem' }}>Email *</label>
                <input value={formData.email} onChange={handleInputChange} name="email" type="email" required className="contact-input-field" placeholder="your@email.com" />
              </div>
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-               <label style={{ fontWeight: 700, color: isModal ? '#94a3b8' : '#374151', fontSize: '0.9rem' }}>Phone Number *</label>
+               <label style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.9rem' }}>Phone Number *</label>
                <div className="phone-wrapper">
                  <div className="flag-box">
                    <img src="https://flagcdn.com/w40/in.png" alt="India" style={{ width: '22px', borderRadius: '2px' }} />
-                   <span style={{ fontWeight: 700, fontSize: '0.9rem', color: '#f1f5f9' }}>+91</span>
+                   <span style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)' }}>+91</span>
                  </div>
                  <input value={formData.phone} onChange={handleInputChange} name="phone" type="tel" required className="contact-input-field phone-input" placeholder="98765 43210" />
                </div>
              </div>
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-               <label style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.4 }}>
+               <label style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.9rem', lineHeight: 1.4 }}>
                  Primary coaching niche / area of expertise? *
                </label>
                <input value={formData.niche} onChange={handleInputChange} name="niche" type="text" required className="contact-input-field" placeholder="e.g. Career Coaching" />
              </div>
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-               <label style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.4 }}>
+               <label style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.9rem', lineHeight: 1.4 }}>
                  Current monthly ad spend? *
                </label>
                <input value={formData.adSpend} onChange={handleInputChange} name="adSpend" type="text" required className="contact-input-field" placeholder="e.g. ₹50,000 / ₹1 Lakh+" />
              </div>
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-               <label style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem' }}>
+               <label style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.9rem' }}>
                  Instagram/Linkedin/Website URL ? *
                </label>
                <textarea value={formData.socials} onChange={handleInputChange} name="socials" required className="contact-input-field" rows="2" style={{ resize: 'none' }} placeholder="https://..."></textarea>
              </div>
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-               <label style={{ fontWeight: 700, color: '#94a3b8', fontSize: '0.9rem' }}>
+               <label style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.9rem' }}>
                  Desired Monthly Revenue ? *
                </label>
                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
@@ -165,7 +165,7 @@ const ContactForm = ({ isModal = false }) => {
                      <div className="custom-checkbox">
                         {revenue.includes(opt) && <Check size={14} color="#fff" strokeWidth={4} />}
                      </div>
-                     <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#94a3b8' }}>{opt}</span>
+                     <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)' }}>{opt}</span>
                    </div>
                  ))}
                </div>
@@ -201,19 +201,19 @@ const ContactForm = ({ isModal = false }) => {
           width: 100%;
           padding: 1.1rem 1.25rem;
           border-radius: 0.85rem;
-          border: 1.5px solid rgba(255,255,255,0.1);
-          background: rgba(255,255,255,0.05);
+          border: 1.5px solid rgba(0,0,0,0.15);
+          background: #ffffff;
           font-size: 1rem;
           outline: none;
           transition: all 0.2s ease;
           font-family: var(--font-body);
-          color: #f1f5f9;
+          color: var(--text-primary);
           box-sizing: border-box;
         }
         .contact-input-field:focus {
           border-color: var(--primary);
-          box-shadow: 0 0 0 4px rgba(224,32,53,0.15);
-          background: rgba(255,255,255,0.08);
+          box-shadow: 0 0 0 4px rgba(22, 78, 170,0.15);
+          background: #ffffff;
         }
         .phone-wrapper {
           position: relative;
@@ -225,12 +225,12 @@ const ContactForm = ({ isModal = false }) => {
            align-items: center;
            gap: 0.5rem;
            padding: 0 1rem;
-           border-right: 1.5px solid rgba(255,255,255,0.1);
+           border-right: 1.5px solid rgba(0,0,0,0.12);
            height: 100%;
            position: absolute;
            left: 0;
            pointer-events: none;
-           background: rgba(255,255,255,0.03);
+           background: rgba(0,0,0,0.03);
            border-radius: 0.75rem 0 0 0.75rem;
         }
         .phone-input {
@@ -248,7 +248,7 @@ const ContactForm = ({ isModal = false }) => {
         .custom-checkbox {
           width: 22px;
           height: 22px;
-          border: 2px solid rgba(255,255,255,0.2);
+          border: 2px solid rgba(0,0,0,0.2);
           border-radius: 4px;
           display: flex;
           align-items: center;
@@ -272,9 +272,11 @@ const ContactForm = ({ isModal = false }) => {
         <div className="contact-grid">
           
           <div style={{ paddingRight: '1rem' }}>
-            <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 800 }}>* GET STARTED</div>
-            <h2 className="heading-lg" style={{ marginBottom: '1.5rem', lineHeight: 1.2, fontWeight: 900, color: '#f1f5f9' }}>
-              Build Your <span style={{ color: 'var(--primary)', textShadow: '0 0 30px rgba(224,32,53,0.3)' }}>Growth Engine</span> Today.
+            <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span style={{ color: 'var(--primary)' }}>*</span> GET STARTED
+            </div>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 900, marginBottom: '1.5rem', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-2px' }}>
+              Build Your <br /> <span className="text-gradient-primary">Growth Engine</span> Today.
             </h2>
             <p className="text-muted" style={{ fontSize: '1.1rem', lineHeight: 1.7, marginBottom: '2.5rem' }}>
               Fill out the form to see if we're a good fit. We only work with people we're 100% confident we can scale.
@@ -282,24 +284,24 @@ const ContactForm = ({ isModal = false }) => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(224,32,53,0.1)', border: '1px solid rgba(224,32,53,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', boxShadow: '0 0 20px rgba(224,32,53,0.1)' }}><Mail size={22}/></div>
+                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(22, 78, 170,0.1)', border: '1px solid rgba(22, 78, 170,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', boxShadow: '0 0 20px rgba(22, 78, 170,0.1)' }}><Mail size={22}/></div>
                  <div>
                     <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#64748b', letterSpacing: '1px' }}>EMAIL SUPPORT</div>
-                    <div style={{ fontWeight: 700, color: '#f1f5f9' }}>support@growthapex.in</div>
+                    <div style={{ fontWeight: 700, color: '#000000' }}>support@growthapex.in</div>
                  </div>
                </div>
                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(224,32,53,0.1)', border: '1px solid rgba(224,32,53,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', boxShadow: '0 0 20px rgba(224,32,53,0.1)' }}><Phone size={22}/></div>
+                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(22, 78, 170,0.1)', border: '1px solid rgba(22, 78, 170,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', boxShadow: '0 0 20px rgba(22, 78, 170,0.1)' }}><Phone size={22}/></div>
                  <div>
                     <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#64748b', letterSpacing: '1px' }}>CALL US</div>
-                    <div style={{ fontWeight: 700, color: '#f1f5f9' }}>+91 92176 48531</div>
+                    <div style={{ fontWeight: 700, color: '#000000' }}>+91 92176 48531</div>
                  </div>
                </div>
                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(224,32,53,0.1)', border: '1px solid rgba(224,32,53,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', boxShadow: '0 0 20px rgba(224,32,53,0.1)' }}><Globe size={22}/></div>
+                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(22, 78, 170,0.1)', border: '1px solid rgba(22, 78, 170,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', boxShadow: '0 0 20px rgba(22, 78, 170,0.1)' }}><Globe size={22}/></div>
                  <div>
                     <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#64748b', letterSpacing: '1px' }}>OFFICE</div>
-                    <div style={{ fontWeight: 700, color: '#f1f5f9' }}>Based in India — Working Globally</div>
+                    <div style={{ fontWeight: 700, color: '#000000' }}>Based in India — Working Globally</div>
                  </div>
                </div>
             </div>

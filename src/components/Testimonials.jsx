@@ -50,7 +50,7 @@ const testimonials = [
     name: "Aarush Bhola",
     role: "Impact Creator",
     img: aarush,
-    gradient: "linear-gradient(135deg, #e02035, #ff6b6b)",
+    gradient: "linear-gradient(135deg, #164EAA, #04BE96)",
   },
   {
     quote: "The strategy call alone gave us more clarity than 3 months working with our previous agency.",
@@ -163,12 +163,21 @@ const TestimonialSlider = () => {
       {/* Testimonial Content Area */}
       <div
         style={{
-          padding: '2rem 1rem',
+          padding: '4rem 3rem',
           textAlign: 'center',
           position: 'relative',
-          minHeight: '280px',
+          minHeight: '360px',
+          background: '#ffffff',
+          borderRadius: '2.5rem',
+          border: '1px solid rgba(0,0,0,0.08)',
+          boxShadow: '0 40px 80px rgba(0,0,0,0.05)',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
         }}
       >
+        <MessageSquareQuote size={140} color="var(--primary)" style={{ position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)', opacity: 0.04, zIndex: 0 }} />
 
         {/* Slide content */}
         <AnimatePresence custom={direction} mode="wait">
@@ -192,10 +201,10 @@ const TestimonialSlider = () => {
               fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
               fontStyle: 'italic',
               fontWeight: 500,
-              color: 'var(--text-primary)',
-              lineHeight: 1.75,
-              marginBottom: '2.5rem',
-              fontFamily: 'var(--font-heading)',
+              color: '#0f172a',
+              lineHeight: 1.6,
+              marginBottom: '3rem',
+              fontFamily: 'var(--font-body)',
             }}>
               "{t.quote}"
             </p>
@@ -212,14 +221,14 @@ const TestimonialSlider = () => {
                 justifyContent: 'center',
                 fontSize: '1.1rem',
                 fontWeight: 700,
-                color: 'white',
+                color: '#ffffff',
                 flexShrink: 0,
                 boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
               }}>
                 {!t.img && t.initials}
               </div>
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--text-primary)' }}>{t.name}</div>
+                <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#0f172a' }}>{t.name}</div>
               </div>
             </div>
           </motion.div>
@@ -239,9 +248,9 @@ const TestimonialSlider = () => {
             width: '48px',
             height: '48px',
             borderRadius: '50%',
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+            background: '#ffffff',
+            border: '1px solid rgba(0,0,0,0.08)',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.06)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -250,11 +259,11 @@ const TestimonialSlider = () => {
             transition: 'box-shadow 0.2s ease, transform 0.2s ease',
           }}
           onMouseEnter={e => {
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(162,21,39,0.18)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(22, 78, 170,0.18)';
             e.currentTarget.style.transform = 'translateY(-50%) scale(1.08)';
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.06)';
             e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
           }}
         >
@@ -272,7 +281,7 @@ const TestimonialSlider = () => {
               width: i === current ? '28px' : '8px',
               height: '8px',
               borderRadius: '99px',
-              background: i === current ? 'var(--primary)' : 'rgba(255,255,255,0.15)',
+              background: i === current ? 'var(--primary)' : 'rgba(0,0,0,0.1)',
               border: 'none',
               cursor: 'pointer',
               padding: 0,
@@ -314,16 +323,16 @@ const Testimonials = () => {
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease'
               }}
             >
-              <div className="badge" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.05)', color: 'var(--text-primary)', border: '1px solid rgba(0,0,0,0.1)' }}>{c.type}</div>
+              <div className="badge" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.05)', color: '#0f172a', border: '1px solid rgba(0,0,0,0.1)' }}>{c.type}</div>
 
               <div style={{ marginBottom: '1.5rem', background: 'rgba(255,255,255,0.03)', padding: '1rem 1.25rem', borderRadius: '1rem', borderLeft: '5px solid var(--primary)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>
-                <div style={{ color: '#64748b', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.25rem' }}>{c.metricTitle}</div>
+                <div style={{ color: '#475569', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.25rem' }}>{c.metricTitle}</div>
                 <div style={{ fontSize: '2.8rem', fontWeight: 900, color: 'var(--primary)', lineHeight: 1, letterSpacing: '-1.5px' }}>{c.metricValue}</div>
               </div>
 
               <div className="grid grid-2 gap-4" style={{ marginBottom: '2.5rem' }}>
                 <div style={{ padding: '0.8rem 1rem', background: 'rgba(239,68,68,0.1)', borderRadius: '0.75rem', border: '1px solid rgba(239,68,68,0.2)' }}>
-                  <div style={{ color: '#94a3b8', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.beforeLabel}</div>
+                  <div style={{ color: '#475569', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.beforeLabel}</div>
                   <div style={{ fontWeight: 800, color: '#ef4444', fontSize: '1rem' }}>{c.beforeValue}</div>
                 </div>
                 <div style={{ padding: '0.8rem 1rem', background: 'rgba(16,185,129,0.1)', borderRadius: '0.75rem', border: '1px solid rgba(16,185,129,0.2)' }}>
@@ -347,11 +356,13 @@ const Testimonials = () => {
         </div>
 
         {/* ── Auto-sliding testimonials ── */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <div className="badge" style={{ marginBottom: '1rem', fontWeight: 700 }}>* WHAT OUR CLIENTS SAY</div>
-          <h3 className="heading-sm" style={{ fontWeight: 700, fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}>
-            Hear It From The <span className="text-gradient-primary">People We've Helped</span>
-          </h3>
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            <span style={{ color: 'var(--primary)' }}>*</span> WHAT OUR CLIENTS SAY
+          </div>
+          <h2 style={{ fontWeight: 900, fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-2px' }}>
+            Hear It From The <br /> <span className="text-gradient-primary">People We've Helped</span>
+          </h2>
         </div>
 
         <TestimonialSlider />

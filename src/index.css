@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-color: #09090f;
-  --bg-secondary: #111118;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
+  --bg-color: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
 
-  --primary: #e02035;
-  --primary-hover: #c01a2c;
-  --primary-glow: rgba(224, 32, 53, 0.3);
+  --primary: #164EAA;
+  --primary-hover: #12408D;
+  --primary-glow: rgba(22, 78, 170, 0.15);
 
-  --accent: #a78bfa;
-  --accent-glow: rgba(167, 139, 250, 0.15);
+  --accent: #04BE96;
+  --accent-glow: rgba(4, 190, 150, 0.1);
 
-  --border-color: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.07);
-
+  --border-color: rgba(0, 0, 0, 0.08);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --content-padding: 80px;
+  --max-width: 1600px;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -74,14 +75,14 @@ h6 {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, #ff9e5e 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -93,31 +94,32 @@ h6 {
 
 /* Utilities */
 .container {
-  max-width: 1280px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--content-padding);
+  width: 100%;
 }
 
 .section {
-  padding: 6rem 0;
+  padding: 4rem 0;
   position: relative;
 }
 
 /* Glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
 .glass-panel {
-  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
   border-radius: 1.5rem;
 }
 
@@ -153,12 +155,12 @@ h6 {
 .btn-outline {
   background: transparent;
   color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.25);
 }
 
 .btn-glow {
@@ -221,8 +223,8 @@ h6 {
   position: absolute;
   inset: 0;
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
   z-index: -1;
   pointer-events: none;
   mask-image: radial-gradient(circle at center, black, transparent 80%);
@@ -345,8 +347,8 @@ h6 {
 }
 
 .input-field {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #f8fafc;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   border-radius: 0.75rem;
   color: var(--text-primary);
@@ -358,8 +360,8 @@ h6 {
 .input-field:focus {
   outline: none;
   border-color: var(--primary);
-  background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 0 0 2px rgba(224, 32, 53, 0.3);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(22, 78, 170, 0.12);
 }
 
 select.input-field {
@@ -393,17 +395,17 @@ select.input-field {
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(162, 21, 39, 0.4);
+    box-shadow: 0 0 0 0 rgba(22, 78, 170, 0.4);
   }
 
   70% {
     transform: scale(1.05);
-    box-shadow: 0 0 0 15px rgba(162, 21, 39, 0);
+    box-shadow: 0 0 0 15px rgba(22, 78, 170, 0);
   }
 
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(162, 21, 39, 0);
+    box-shadow: 0 0 0 0 rgba(22, 78, 170, 0);
   }
 }
 
@@ -432,7 +434,7 @@ select.input-field {
 .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
 
 .graphic-shadow {
-  filter: drop-shadow(0 20px 30px rgba(162, 21, 39, 0.2));
+  filter: drop-shadow(0 20px 30px rgba(22, 78, 170, 0.2));
 }
 
 .glass-card-hover {
@@ -440,10 +442,10 @@ select.input-field {
 }
 
 .glass-card-hover:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.07);
-  border-color: var(--primary-glow);
-  box-shadow: 0 20px 40px rgba(224, 32, 53, 0.15);
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(22, 78, 170, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 /* Card hover fx removed for static feel */
@@ -451,12 +453,12 @@ select.input-field {
 .badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: rgba(162, 21, 39, 0.15);
+  background: rgba(22, 78, 170, 0.15);
   color: var(--primary);
   border-radius: 2rem;
   font-size: 0.85rem;
   font-weight: 600;
-  border: 1px solid rgba(162, 21, 39, 0.3);
+  border: 1px solid rgba(22, 78, 170, 0.3);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -472,7 +474,7 @@ select.input-field {
   font-weight: 800;
   font-family: var(--font-heading);
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #f1f5f9 0%, var(--primary) 100%);
+  background: linear-gradient(135deg, #0f172a 0%, var(--primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

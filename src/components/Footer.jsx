@@ -1,145 +1,260 @@
-import React, { useState } from 'react';
-import { Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { syncToGoogleSheets } from '../utils/googleSheets';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logoImg from '../assets/logoggog.png';
 
 const Footer = ({ onOpenModal }) => {
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(''); // '', 'success', 'error'
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    if (!email) return;
-    setLoading(true);
-    setStatus('');
-
-    try {
-      await addDoc(collection(db, "newsletter"), {
-        email,
-        createdAt: serverTimestamp(),
-      });
-      
-      // Sync to Google Sheets
-      syncToGoogleSheets({ email }, 'newsletter');
-
-      setStatus('success');
-      setEmail('');
-      setTimeout(() => setStatus(''), 5000);
-    } catch (err) {
-      console.error(err);
-      setStatus('error');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <footer style={{ background: '#09090f', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '6rem', paddingBottom: '2rem' }}>
-      <div className="container" style={{ maxWidth: '1200px' }}>
-        
-        {/* Top CTA Banner */}
-        <div className="footer-cta-banner" style={{ background: 'linear-gradient(135deg, rgba(224,32,53,0.1), rgba(224,32,53,0.04))', borderRadius: '1.5rem', padding: '3rem 4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2rem', marginBottom: '5rem', border: '1px solid rgba(224,32,53,0.15)' }}>
-          <div>
-            <h3 style={{ fontSize: '2.2rem', fontWeight: 900, color: '#f1f5f9', marginBottom: '0.75rem', letterSpacing: '-1px' }}>
-              Ready to grow your empire?
-            </h3>
-            <p style={{ color: '#64748b', fontSize: '1.1rem', fontWeight: 500 }}>
-              Stop wasting money on agencies that don't deliver. Let's build a predictable system.
+    <footer
+      style={{
+        background: '#0a1628',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        padding: '5rem 1.5rem 0',
+        fontFamily: 'var(--font-body)',
+      }}
+    >
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+
+        {/* Main Grid */}
+        <div className="footer-main-grid">
+
+          {/* Column 1: Brand */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {/* Logo */}
+            <img
+              src={logoImg}
+              alt="GrowthApex Logo"
+              style={{ height: '64px', width: 'auto', objectFit: 'contain', alignSelf: 'flex-start' }}
+              onError={e => { e.target.style.display = 'none'; }}
+            />
+
+            {/* Tagline */}
+            <p
+              style={{
+                color: '#22c55e',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+              }}
+            >
+              WE TAKE YOU TO THE APEX
+            </p>
+
+            {/* Description */}
+            <p
+              style={{
+                color: 'rgba(255,255,255,0.55)',
+                fontSize: '0.95rem',
+                lineHeight: 1.7,
+                maxWidth: '300px',
+              }}
+            >
+              Full stack growth partner for coaches, consultants, wellness leaders, and course creators across India. We build growth engines — not just campaigns.
             </p>
           </div>
-          <button 
-            onClick={onOpenModal}
-            className="btn btn-primary btn-glow"
-            style={{ padding: '1.1rem 2.2rem', fontSize: '1.1rem', borderRadius: '0.75rem' }}
-          >
-            Start Your Project <ArrowRight size={20} style={{ marginLeft: '0.75rem' }}/>
-          </button>
-        </div>
 
-        <div className="footer-grid">
-          
-          {/* Column 1: Brand */}
-          <div className="footer-column-brand" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <img className="footer-logo" src="/logo.png" alt="GrowthApex Logo" style={{ height: '70px', width: 'fit-content' }} onError={(e) => { e.target.style.display = 'none'; }} />
-            <p style={{ color: '#64748b', fontSize: '1.05rem', lineHeight: 1.65, fontWeight: 500 }}>
-              We are a full-stack growth partner for businesses that demand performance-driven results and sustainable scale.
-            </p>
-            <div className="footer-socials" style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
-              <a href="https://www.instagram.com/growth_apex05?igsh=bzhtZDRxZWFlZjNy&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{ padding: '0.7rem', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.08)' }}><Instagram size={20} /></a>
-              <a href="#" style={{ padding: '0.7rem', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.08)' }}><Twitter size={20} /></a>
-              <a href="#" style={{ padding: '0.7rem', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.08)' }}><Linkedin size={20} /></a>
+          {/* Column 2: Services */}
+          <div>
+            <h4
+              style={{
+                color: '#ffffff',
+                fontWeight: 800,
+                fontSize: '1.05rem',
+                marginBottom: '1.5rem',
+                letterSpacing: '-0.3px',
+              }}
+            >
+              Services
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {[
+                'Performance marketing',
+                'Social media management',
+                'Funnel creation',
+                'Lead nurturing',
+                'Sales training',
+                'Growth leakage audit',
+              ].map((item) => (
+                <a
+                  key={item}
+                  href="#services"
+                  style={{
+                    color: 'rgba(255,255,255,0.6)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    fontWeight: 500,
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+                >
+                  {item}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Column 2 & 3: Navigation & Support */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h4 style={{ color: '#f1f5f9', fontWeight: 800, fontSize: '1.15rem', marginBottom: '0.5rem' }}>Company</h4>
-            <a href="#about" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>About Us</a>
-            <a href="#services" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Services</a>
-            <a href="#results" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Results</a>
-            <a href="#process" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Methodology</a>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h4 style={{ color: '#f1f5f9', fontWeight: 800, fontSize: '1.15rem', marginBottom: '0.5rem' }}>Resources</h4>
-            <a href="/blog" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Our Blog</a>
-            <a href="#" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Case Studies</a>
-            <a href="#" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Privacy Policy</a>
-            <button onClick={onOpenModal} style={{ textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: '#64748b', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Contact Us</button>
-          </div>
-
-          {/* Column 4: Newsletter */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-             <h4 style={{ color: '#f1f5f9', fontWeight: 800, fontSize: '1.15rem', marginBottom: '0.5rem' }}>Stay Updated</h4>
-             <p style={{ color: '#64748b', fontSize: '0.9rem', lineHeight: 1.6, fontWeight: 500 }}>Get top-tier agency growth tactics and conversion hacks directly in your inbox.</p>
-             <form onSubmit={handleSubscribe} style={{ display: 'flex', border: '1.5px solid rgba(255,255,255,0.1)', borderRadius: '12px', overflow: 'hidden', padding: '0.25rem', background: 'rgba(255,255,255,0.05)' }}>
-                <input 
-                  type="email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email address" 
-                  required
-                  style={{ padding: '0.75rem 1rem', border: 'none', outline: 'none', width: '100%', fontSize: '0.9rem', fontWeight: 500, background: 'transparent', color: '#f1f5f9' }} 
-                />
-                <button 
-                  disabled={loading}
-                  type="submit"
-                  style={{ background: 'var(--primary)', color: '#fff', border: 'none', padding: '0 1.25rem', fontWeight: 700, cursor: 'pointer', borderRadius: '8px', opacity: loading ? 0.7 : 1 }}
+          {/* Column 3: Company */}
+          <div>
+            <h4
+              style={{
+                color: '#ffffff',
+                fontWeight: 800,
+                fontSize: '1.05rem',
+                marginBottom: '1.5rem',
+                letterSpacing: '-0.3px',
+              }}
+            >
+              Company
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {[
+                { label: 'About us', href: '#about' },
+                { label: 'Case studies', href: '#results' },
+                { label: 'Who we work with', href: '#niches' },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  style={{
+                    color: 'rgba(255,255,255,0.6)',
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    fontWeight: 500,
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                 >
-                  {loading ? '...' : 'Join'}
-                </button>
-             </form>
-             {status === 'success' && <p style={{ fontSize: '0.8rem', color: 'green', fontWeight: 600 }}>Thank you for joining!</p>}
-             {status === 'error' && <p style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 600 }}>Error. Try again later.</p>}
+                  {item.label}
+                </a>
+              ))}
+              <Link
+                to="/audit"
+                style={{
+                  color: 'rgba(255,255,255,0.6)',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  fontFamily: 'inherit',
+                  textDecoration: 'none',
+                  transition: 'color 0.2s',
+                  display: 'block',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+              >
+                Book a free audit
+              </Link>
+              <button
+                onClick={onOpenModal}
+                style={{
+                  textAlign: 'left',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  color: 'rgba(255,255,255,0.6)',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  fontFamily: 'inherit',
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+              >
+                Contact us
+              </button>
+            </div>
           </div>
-          
+
+          {/* Column 4: Contact */}
+          <div>
+            <h4
+              style={{
+                color: '#ffffff',
+                fontWeight: 800,
+                fontSize: '1.05rem',
+                marginBottom: '1.5rem',
+                letterSpacing: '-0.3px',
+              }}
+            >
+              Contact
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <a
+                href="mailto:hello@growthapex.in"
+                style={{
+                  color: 'rgba(255,255,255,0.6)',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+              >
+                hello@growthapex.in
+              </a>
+              <a
+                href="https://growthapex.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'rgba(255,255,255,0.6)',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+              >
+                growthapex.in
+              </a>
+            </div>
+          </div>
+
         </div>
-        
+
         {/* Bottom Strip */}
-        <div style={{ paddingTop: '2.5rem', borderTop: '1px solid rgba(255,255,255,0.07)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', textAlign: 'center' }}>
-          <p style={{ color: '#94a3b8', fontSize: '0.9rem', fontWeight: 600 }}>
-            © {new Date().getFullYear()} GrowthApex. all reserved
+        <div
+          style={{
+            marginTop: '4rem',
+            borderTop: '1px solid rgba(255,255,255,0.07)',
+            padding: '1.75rem 0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.88rem', fontWeight: 500 }}>
+            © {new Date().getFullYear()} GrowthApex. All rights reserved.
           </p>
+
         </div>
 
       </div>
 
       <style>{`
-        .footer-grid {
+        .footer-main-grid {
           display: grid;
+          grid-template-columns: 1.6fr 1fr 1fr 1fr;
           gap: 4rem;
-          margin-bottom: 4rem;
-          grid-template-columns: minmax(280px, 1.8fr) 1fr 1fr 1.3fr;
+          margin-bottom: 0;
         }
         @media (max-width: 1024px) {
-          .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+          .footer-main-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+          }
         }
         @media (max-width: 600px) {
-          .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-          .footer-cta-banner { padding: 2.5rem 2rem !important; flex-direction: column; text-align: center; }
-          .footer-cta-banner h3 { font-size: 1.8rem !important; }
+          .footer-main-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+          }
         }
       `}</style>
     </footer>

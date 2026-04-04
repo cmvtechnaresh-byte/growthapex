@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import AboutUs from './components/AboutUs';
-import Stats from './components/Stats';
 import Services from './components/Services';
-import Team from './components/Team';
 import WhyUs from './components/WhyUs';
-import Calculator from './components/Calculator';
-import Testimonials from './components/Testimonials';
+import Difference from './components/Difference';
 import Process from './components/Process';
-import ContactForm from './components/ContactForm';
-import ContactModal from './components/ContactModal';
+import Results from './components/Results';
+import Niches from './components/Niches';
+import BookAudit from './components/BookAudit';
+import MiniAuditModal from './components/MiniAuditModal';
 import Footer from './components/Footer';
-import Clients from './components/Clients';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
+import AuditFormPage from './pages/AuditFormPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -25,16 +23,13 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 const HomePage = ({ onOpenModal }) => (
   <>
     <Hero onOpenModal={onOpenModal} />
-    <Clients />
-    <AboutUs />
-    <Stats />
-    <Services />
     <WhyUs />
-    <Team />
-    <Calculator onOpenModal={onOpenModal} />
-    <Testimonials />
+    <Difference />
+    <Services />
     <Process />
-    <ContactForm />
+    <Results />
+    <Niches />
+    <BookAudit onOpenModal={onOpenModal} />
   </>
 );
 
@@ -55,6 +50,7 @@ function App() {
         <Route path="/" element={<HomePage onOpenModal={openModal} />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
+        <Route path="/audit" element={<AuditFormPage />} />
         
         {/* Admin Routes */}
         <Route path="/emslogin" element={<AdminLogin />} />
@@ -63,8 +59,8 @@ function App() {
 
       {!isAdminPage && <Footer onOpenModal={openModal} />}
       
-      {/* Global Contact Popup */}
-      <ContactModal isOpen={isModalOpen} onClose={closeModal} />
+      {/* Mini Audit Popup */}
+      <MiniAuditModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
 }

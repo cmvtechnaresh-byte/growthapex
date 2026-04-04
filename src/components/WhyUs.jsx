@@ -1,224 +1,142 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Zap, BarChart3, HeadphonesIcon, RefreshCcw, Trophy } from 'lucide-react';
+import { AlertCircle, ZapOff, UserMinus, Settings, ArrowDown } from 'lucide-react';
 
 const reasons = [
   {
-    icon: <BarChart3 size={28} />,
-    title: "Data-First Decisions",
-    desc: "Every campaign, content piece, and funnel is backed by real analytics — not guesswork. We measure what matters.",
-    glow: "rgba(224,32,53,0.25)",
-    accent: "#e02035"
+    icon: <AlertCircle size={24} />,
+    title: "They run ads. You lose leads.",
+    desc: "Campaigns go live, budget gets spent, but leads fall into a black hole. No follow-up system. No nurturing. Just wasted spend."
   },
   {
-    icon: <Zap size={28} />,
-    title: "Full-Stack Execution",
-    desc: "Strategy, content, ads, funnels, automation — we handle everything end-to-end so you focus on your core business.",
-    glow: "rgba(167,139,250,0.2)",
-    accent: "#a78bfa"
+    icon: <ZapOff size={24} />,
+    title: "Tactics without strategy.",
+    desc: "Posts go up. Reels get made. But there's no system connecting content to conversions. It looks busy. It produces nothing."
   },
   {
-    icon: <Trophy size={28} />,
-    title: "Proven Track Record",
-    desc: "₹9Cr+ in managed ad spend. 300+ campaigns. 94% client success rate. Our numbers speak for themselves.",
-    glow: "rgba(251,191,36,0.2)",
-    accent: "#fbbf24"
+    icon: <UserMinus size={24} />,
+    title: "Sales team left on their own.",
+    desc: "Marketing generates interest but nobody trains the sales team to close. The gap between lead and revenue stays wide open."
   },
   {
-    icon: <RefreshCcw size={28} />,
-    title: "Optimization Loop",
-    desc: "We don't set-it-and-forget-it. Continuous A/B testing, creative refreshes, and weekly performance reviews.",
-    glow: "rgba(16,185,129,0.2)",
-    accent: "#10b981"
-  },
-  {
-    icon: <ShieldCheck size={28} />,
-    title: "Brand-Safe Approach",
-    desc: "We protect your brand's voice and reputation while aggressively scaling reach. Growth without compromise.",
-    glow: "rgba(59,130,246,0.2)",
-    accent: "#3b82f6"
-  },
-  {
-    icon: <HeadphonesIcon size={28} />,
-    title: "Dedicated Support",
-    desc: "A dedicated account manager, weekly check-ins, and real-time reporting — you're never left in the dark.",
-    glow: "rgba(236,72,153,0.2)",
-    accent: "#ec4899"
+    icon: <Settings size={24} />,
+    title: "You're the project manager.",
+    desc: "Three vendors. Five tools. Zero accountability. You spend more time managing your agency than running your business."
   }
 ];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }
-  })
-};
 
 const WhyUs = () => {
   return (
     <section
       id="why-us"
       style={{
-        padding: '7rem 0',
-        background: 'linear-gradient(180deg, #09090f 0%, #0e0e18 50%, #09090f 100%)',
+        padding: '5rem 0',
+        background: '#111827', // Dark mode matches Hero
+        color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Radial glow bg */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(224,32,53,0.08) 0%, transparent 70%)'
-      }} />
-
-      {/* Subtle grid */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
-        backgroundSize: '60px 60px'
-      }} />
-
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-
         {/* Header */}
         <motion.div
-          className="text-center"
-          style={{ marginBottom: '5rem' }}
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          style={{ marginBottom: '4rem' }}
         >
-          <div className="badge" style={{ marginBottom: '1.5rem' }}>WHY GROWTHAPEX</div>
+          <div style={{ 
+            display: 'inline-flex', 
+            padding: '0.5rem 1rem', 
+            background: 'rgba(255, 255, 255, 0.05)', 
+            borderRadius: '100px',
+            fontSize: '0.9rem',
+            fontWeight: 700,
+            color: '#94a3b8',
+            marginBottom: '2rem',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            Why GrowthApex
+          </div>
           <h2 style={{
             fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
             fontWeight: 900,
-            fontFamily: 'var(--font-heading)',
-            color: '#f1f5f9',
-            lineHeight: 1.15,
-            marginBottom: '1.5rem'
+            maxWidth: '1000px',
+            lineHeight: 1.1,
+            marginBottom: '2rem',
+            letterSpacing: '-2px'
           }}>
-            Built Different. <br />
-            <span style={{
-              background: 'linear-gradient(135deg, #e02035 0%, #ff6b6b 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>
-              Engineered for Results.
-            </span>
+            Most agencies run your marketing. <br />
+            <span style={{ color: '#ffffff', opacity: 0.8 }}>Nobody fixes why it isn't working.</span>
           </h2>
-          <p style={{ color: '#64748b', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
-            We're not another agency. We partner with brands who are serious about growth and build the systems that make it happen.
+          <p style={{ color: '#94a3b8', fontSize: '1.2rem', maxWidth: '850px', lineHeight: 1.7 }}>
+            You've probably hired someone before. Paid for posts, ran some ads, maybe even built a funnel. But the leads didn't convert, the sales team didn't close, and the agency just kept sending reports with no real answers. Sound familiar?
           </p>
         </motion.div>
 
         {/* Cards grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '1.5rem',
+          marginBottom: '4rem'
         }} className="why-us-grid">
           {reasons.map((r, i) => (
             <motion.div
               key={i}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-              whileHover={{ y: -8, transition: { duration: 0.22 } }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
               style={{
-                padding: '2.5rem 2rem',
-                borderRadius: '1.75rem',
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                backdropFilter: 'blur(10px)',
-                cursor: 'default',
+                padding: '2.5rem',
+                borderRadius: '1.5rem',
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
                 position: 'relative',
-                overflow: 'hidden',
               }}
             >
-              {/* Inner glow */}
-              <div style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-                background: `linear-gradient(90deg, transparent, ${r.accent}, transparent)`,
-                opacity: 0.7
-              }} />
-
-              {/* Icon box */}
-              <div style={{
-                width: '60px', height: '60px',
-                borderRadius: '16px',
-                background: `${r.glow}`,
-                border: `1px solid ${r.accent}30`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: r.accent,
-                marginBottom: '1.75rem',
-                boxShadow: `0 8px 24px ${r.glow}`
-              }}>
+              {/* Animated Icon box */}
+              <motion.div 
+                animate={{ 
+                  opacity: [0.6, 1, 0.6],
+                  scale: [0.95, 1, 0.95]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 3,
+                  ease: "easeInOut",
+                  delay: i * 0.5
+                }}
+                style={{
+                  width: '44px', height: '44px',
+                  borderRadius: '10px',
+                  background: 'rgba(239, 68, 68, 0.1)', // Subtle red
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#ef4444',
+                  marginBottom: '1.5rem',
+                }}
+              >
                 {r.icon}
-              </div>
+              </motion.div>
 
               <h3 style={{
-                fontSize: '1.2rem', fontWeight: 800,
-                color: '#f1f5f9', marginBottom: '0.875rem',
-                fontFamily: 'var(--font-heading)'
+                fontSize: '1.25rem', fontWeight: 800,
+                color: '#ffffff', marginBottom: '1rem',
               }}>{r.title}</h3>
 
               <p style={{
-                fontSize: '0.95rem', color: '#64748b',
-                lineHeight: 1.7, fontWeight: 500
+                fontSize: '1rem', color: '#94a3b8',
+                lineHeight: 1.6, fontWeight: 500
               }}>{r.desc}</p>
             </motion.div>
           ))}
         </div>
-
-        {/* Bottom CTA strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          style={{
-            marginTop: '5rem',
-            padding: '3rem 4rem',
-            borderRadius: '2rem',
-            background: 'linear-gradient(135deg, rgba(224,32,53,0.12) 0%, rgba(167,139,250,0.08) 100%)',
-            border: '1px solid rgba(224,32,53,0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '2rem',
-            flexWrap: 'wrap'
-          }}
-        >
-          <div>
-            <div style={{ fontSize: '0.85rem', color: '#e02035', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '0.5rem' }}>
-              Ready to Scale?
-            </div>
-            <h3 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 900, color: '#f1f5f9', fontFamily: 'var(--font-heading)' }}>
-              Let's build your growth engine together.
-            </h3>
-          </div>
-          <a
-            href="#contact"
-            className="btn btn-primary btn-glow"
-            style={{ padding: '1.1rem 2.5rem', fontSize: '1.1rem', borderRadius: '0.875rem', whiteSpace: 'nowrap' }}
-          >
-            Start Growing Today →
-          </a>
-        </motion.div>
-
       </div>
 
       <style>{`
-        @media (max-width: 1024px) {
-          .why-us-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 640px) {
+        @media (max-width: 900px) {
           .why-us-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

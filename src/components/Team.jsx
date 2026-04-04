@@ -39,21 +39,25 @@ const duplicatedMembers = [...teamMembers, ...teamMembers];
 
 const Team = () => {
   return (
-    <section className="section" id="team" style={{ background: '#09090f', position: 'relative', overflow: 'hidden' }}>
+    <section className="section" id="team" style={{ background: 'var(--bg-color)', position: 'relative', overflow: 'hidden' }}>
       <div className="container">
         
         {/* Top Header */}
         <div className="text-center" style={{ marginBottom: '5rem' }}>
-          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 800 }}>* OUR EXPERTS</div>
+          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            <span style={{ color: 'var(--primary)' }}>*</span> OUR EXPERTS
+          </div>
           
           <h2 
-            className="heading-xl" 
             style={{ 
+              fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
               lineHeight: 1.1, 
               fontWeight: 900,
+              color: '#0f172a',
+              letterSpacing: '-2px'
             }}
           >
-            Meet the <span className="text-gradient-primary">Engineering Team</span>
+            Meet the <br /> <span className="text-gradient-primary">Engineering Team</span>
           </h2>
         </div>
       </div>
@@ -84,7 +88,7 @@ const Team = () => {
                  overflow: 'hidden',
                  position: 'relative',
                  aspectRatio: '3/4',
-                 background: '#111118',
+                 background: 'var(--bg-secondary)',
                  border: '1px solid rgba(255,255,255,0.06)',
                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
                  flexShrink: 0

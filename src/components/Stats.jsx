@@ -51,7 +51,7 @@ const Stats = () => {
       id="stats"
       style={{
         padding: '8rem 0',
-        background: '#09090f',
+        background: 'var(--bg-color)',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -59,11 +59,11 @@ const Stats = () => {
       <div className="container" style={{ marginBottom: '5rem', textAlign: 'center' }}>
         <div
           className="badge"
-          style={{ marginBottom: '1.5rem', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+          style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
         >
           <span style={{ color: 'var(--primary)' }}>*</span> SOCIAL PROOF
         </div>
-        <h2 className="heading-xl" style={{ fontWeight: 700, lineHeight: 1.1, color: '#f1f5f9' }}>
+        <h2 style={{ fontWeight: 900, fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-2px' }}>
           Real Growth. <br className="hidden md:block" /> <span className="text-gradient-primary">Real Numbers.</span>
         </h2>
       </div>
@@ -102,16 +102,16 @@ const Stats = () => {
               viewport={{ once: true }}
               whileHover={{
                 y: -8,
-                boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
-                borderColor: 'rgba(224,32,53,0.3)',
+                boxShadow: '0 25px 50px rgba(0,0,0,0.08)',
+                borderColor: 'rgba(22, 78, 170,0.3)',
                 transition: { duration: 0.22 },
               }}
               style={{
                 cursor: 'default',
                 textAlign: 'center',
-                background: 'rgba(255,255,255,0.03)',
+                background: '#ffffff',
                 borderRadius: '2rem',
-                border: '1px solid rgba(255,255,255,0.07)',
+                border: '1px solid rgba(0,0,0,0.08)',
                 padding: '3rem 2rem',
                 position: 'relative',
                 overflow: 'hidden'
@@ -119,33 +119,28 @@ const Stats = () => {
             >
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, transparent, var(--primary), transparent)', opacity: 0.4 }} />
 
-              <div 
-                className="stat-value" 
-                style={{ 
-                  fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', 
-                  fontWeight: 900, 
-                  marginBottom: '0.75rem', 
+              <div
+                className="stat-value"
+                style={{
+                  fontSize: 'clamp(3.5rem, 5vw, 4.5rem)',
+                  fontWeight: 900,
+                  marginBottom: '1rem',
                   fontFamily: 'var(--font-heading)',
-                  background: 'linear-gradient(135deg, #f1f5f9 0%, #e02035 120%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  color: '#0f172a',
                   display: 'flex',
                   alignItems: 'baseline',
                   justifyContent: 'center',
-                  gap: '0.1rem'
+                  gap: '0.2rem',
+                  letterSpacing: '-2px'
                 }}
               >
                 {stat.prefix}
-                <span style={{ WebkitTextFillColor: 'initial', background: 'none', backgroundClip: 'initial', color: 'inherit' }}>
-                   <AnimatedNumber value={stat.num} duration={2} />
+                <span style={{ color: 'var(--primary)' }}>
+                  <AnimatedNumber value={stat.num} duration={2} />
                 </span>
-                <span style={{ 
-                  background: 'linear-gradient(135deg, #e02035 0%, #ff6b6b 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  filter: 'drop-shadow(0 0 10px rgba(224,32,53,0.3))' 
+                <span className="text-gradient-primary" style={{
+                  fontSize: 'clamp(2.5rem, 3vw, 3.5rem)',
+                  filter: 'drop-shadow(0 0 15px rgba(4, 190, 150, 0.4))'
                 }}>
                   {stat.suffix}
                 </span>
@@ -153,7 +148,7 @@ const Stats = () => {
 
               <div
                 className="stat-label"
-                style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f1f5f9', opacity: 0.9, letterSpacing: '0.5px' }}
+                style={{ fontSize: '1.15rem', fontWeight: 700, color: '#0f172a', opacity: 0.9, letterSpacing: '0.5px' }}
               >
                 {stat.label}
               </div>
@@ -161,7 +156,7 @@ const Stats = () => {
           ))}
         </div>
 
-        <div className="text-center" style={{ marginTop: '5rem', opacity: 0.8, fontWeight: 700, color: '#64748b', fontSize: '1.2rem', fontStyle: 'italic' }}>
+        <div className="text-center" style={{ marginTop: '5rem', opacity: 0.8, fontWeight: 700, color: '#475569', fontSize: '1.2rem', fontStyle: 'italic' }}>
           "We don’t promise vanity metrics — we deliver business results."
         </div>
       </div>

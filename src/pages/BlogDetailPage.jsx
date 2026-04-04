@@ -42,7 +42,7 @@ const ReadingProgress = () => {
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '3px', zIndex: 200, background: 'rgba(255,255,255,0.06)' }}>
       <motion.div
-        style={{ height: '100%', background: 'linear-gradient(90deg,var(--primary),#ff6b6b)', transformOrigin: 'left' }}
+        style={{ height: '100%', background: 'linear-gradient(90deg,var(--primary),#04BE96)', transformOrigin: 'left' }}
         animate={{ width: `${progress}%` }}
         transition={{ duration: 0.1, ease: 'linear' }}
       />
@@ -155,7 +155,7 @@ const BlogDetailPage = () => {
       <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '8rem', gap: '1rem' }}>
         <BookOpen size={48} style={{ color: '#cbd5e1' }} />
         <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 700, color: '#1a1f2e' }}>Article not found</h1>
-        <Link to="/blog" style={{ color: 'var(--primary)', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(224,32,53,0.1)', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>
+        <Link to="/blog" style={{ color: 'var(--primary)', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(22, 78, 170,0.1)', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>
           <ArrowLeft size={16} /> Back to Blog
         </Link>
       </div>
@@ -239,14 +239,14 @@ const BlogDetailPage = () => {
           font-size: 1.25rem; font-style: italic; line-height: 1.8;
           color: #94a3b8; border-left: 4px solid var(--primary);
           padding: 1.25rem 2rem; margin-bottom: 3.5rem;
-          background: rgba(224,32,53,0.05); border-radius: 0 1rem 1rem 0;
+          background: rgba(22, 78, 170,0.05); border-radius: 0 1rem 1rem 0;
           box-shadow: inset 0 0 40px rgba(0,0,0,0.2);
         }
         /* Share + divider */
         .article-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 3rem 0; }
         /* CTA box */
         .article-cta {
-          background: linear-gradient(135deg, rgba(224,32,53,0.1) 0%, rgba(167,139,250,0.05) 100%);
+          background: linear-gradient(135deg, rgba(22, 78, 170,0.1) 0%, rgba(167,139,250,0.05) 100%);
           border: 1px solid rgba(255,255,255,0.08);
           border-radius: 2rem;
           padding: 3rem;
@@ -274,7 +274,7 @@ const BlogDetailPage = () => {
           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
           transition: all 0.3s ease;
         }
-        .related-card:hover { transform: translateY(-7px); box-shadow: 0 25px 50px rgba(0,0,0,0.5); border-color: rgba(224,32,53,0.3); }
+        .related-card:hover { transform: translateY(-7px); box-shadow: 0 25px 50px rgba(0,0,0,0.5); border-color: rgba(22, 78, 170,0.3); }
         .related-card:hover .related-img { transform: scale(1.05); }
         /* Related grid */
         .related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 1.5rem; }
@@ -320,7 +320,7 @@ const BlogDetailPage = () => {
       </header>
 
       {/* ── Body ── */}
-      <main style={{ background: '#09090f' }}>
+      <main style={{ background: 'var(--bg-color)' }}>
         <div className="container">
           <div className="detail-layout">
 
@@ -371,7 +371,7 @@ const BlogDetailPage = () => {
                     background: 'var(--primary)', color: '#fff',
                     borderRadius: '99px', padding: '0.9rem 2.1rem',
                     fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none',
-                    boxShadow: '0 8px 24px rgba(162,21,39,0.28)',
+                    boxShadow: '0 8px 24px rgba(22, 78, 170,0.28)',
                     transition: 'opacity 0.2s, transform 0.2s',
                   }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}

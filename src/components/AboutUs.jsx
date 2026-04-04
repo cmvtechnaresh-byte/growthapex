@@ -82,28 +82,29 @@ const AboutUs = () => {
         {/* Top Headings */}
         <motion.div
           className="text-center"
-          style={{ marginBottom: '5rem' }}
+          style={{ marginBottom: '3.5rem' }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700 }}>
-            * ABOUT US
+          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            <span style={{ color: 'var(--primary)' }}>*</span> ABOUT US
           </div>
 
           <h2
-            className="heading-sm"
             style={{
-              maxWidth: '1000px',
+              maxWidth: '1100px',
               margin: '0 auto 2.5rem auto',
-              lineHeight: 1.4,
-              fontWeight: 600,
-              fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)'
+              lineHeight: 1.1,
+              fontWeight: 900,
+              fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
+              color: '#0f172a',
+              letterSpacing: '-2px'
             }}
           >
-            At GrowthApex, we don’t just manage marketing —{' '}
-            <span style={{ fontStyle: 'italic' }} className="text-primary">we engineer growth systems.</span>
+            At GrowthApex, We Don’t Just Manage Marketing — <br />
+            <span className="text-gradient-primary">We Engineer Growth Systems.</span>
           </h2>
 
           <div
@@ -115,10 +116,10 @@ const AboutUs = () => {
               gap: '1.5rem'
             }}
           >
-            <p style={{ fontSize: '1.2rem', color: '#94a3b8', fontWeight: 500, lineHeight: 1.7 }}>
+            <p style={{ fontSize: '1.2rem', color: '#475569', fontWeight: 500, lineHeight: 1.7 }}>
               We combine strategy, content, paid marketing, and automation into one powerful ecosystem that helps brands scale faster and smarter.
             </p>
-            <p style={{ fontSize: '1.1rem', color: '#94a3b8', fontWeight: 200, lineHeight: 1.7 }}>
+            <p style={{ fontSize: '1.1rem', color: '#64748b', fontWeight: 400, lineHeight: 1.7 }}>
               From identifying your exact positioning to executing high-converting campaigns, our approach is built on data, creativity, and performance. We believe growth isn’t random — it’s designed, tested, and optimized.
             </p>
           </div>
@@ -161,8 +162,8 @@ const AboutUs = () => {
                 animate={isInView ? 'visible' : 'hidden'}
                 whileHover={{
                   y: -6,
-                  boxShadow: '0 20px 40px rgba(162,21,39,0.08)',
-                  borderColor: 'rgba(162,21,39,0.15)',
+                  boxShadow: '0 20px 40px rgba(22, 78, 170,0.08)',
+                  borderColor: 'rgba(22, 78, 170,0.15)',
                   transition: { duration: 0.25 }
                 }}
                 className="glass"
@@ -188,7 +189,7 @@ const AboutUs = () => {
                     <AnimatedNumber value={stat.num} duration={2} />
                     <span style={{
                       color: 'var(--primary)',
-                      filter: 'drop-shadow(0 5px 10px rgba(162,21,39,0.2))'
+                      filter: 'drop-shadow(0 5px 10px rgba(22, 78, 170,0.2))'
                     }}>
                       {stat.suffix}
                     </span>

@@ -12,10 +12,12 @@ const FreeResource = () => {
           className="glass-panel" style={{ padding: '0', display: 'flex', flexWrap: 'wrap', overflow: 'hidden', border: '1px solid rgba(255,106,0,0.2)' }}>
           
           <div className="w-full md:w-1/2 p-12" style={{ flex: '1 1 50%', padding: '4rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div className="badge" style={{ marginBottom: '1.5rem', background: 'rgba(255,106,0,0.1)' }}>🎁 Free Resource</div>
+            <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span style={{ color: 'var(--primary)' }}>*</span> FREE RESOURCE
+            </div>
             
-            <h2 className="heading-md" style={{ marginBottom: '1.5rem' }}>
-              The Coach <span className="text-gradient-primary">Growth Blueprint</span>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, marginBottom: '1.5rem', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-1.5px' }}>
+              The Coach <br /> <span className="text-gradient-primary">Growth Blueprint</span>
             </h2>
             
             <p className="text-muted" style={{ fontSize: '1.1rem', marginBottom: '3rem', lineHeight: 1.8 }}>
