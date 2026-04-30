@@ -182,7 +182,7 @@ const Footer = ({ onOpenModal }) => {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <a
-                href="mailto:hello@growthapex.in"
+                href="mailto:support@growthapex.in"
                 style={{
                   color: 'rgba(255,255,255,0.6)',
                   textDecoration: 'none',
@@ -193,7 +193,7 @@ const Footer = ({ onOpenModal }) => {
                 onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
               >
-                hello@growthapex.in
+                support@growthapex.in
               </a>
               <a
                 href="https://growthapex.in"
