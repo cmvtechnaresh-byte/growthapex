@@ -1,9 +1,23 @@
 import React, { useState } from 'react';
 
+const WA_MESSAGE = `Hi GrowthApex! 👋
+
+I visited your website and I'm interested in growing my business.
+
+I'd love to know more about:
+✅ Social Media Management
+✅ Performance Marketing (Meta/Google Ads)
+✅ Flexible Sales Funnel Creation
+✅ Lead Nurturing & Sales Training
+
+Can we schedule a FREE Growth Audit call?
+
+Looking forward to hearing from you! 🚀`;
+
 const WhatsAppWidget = ({ phoneNumber = '919217648531' }) => {
   const [hovered, setHovered] = useState(false);
 
-  const waLink = `https://wa.me/${phoneNumber}?text=Hi%20GrowthApex%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services!`;
+  const waLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(WA_MESSAGE)}`;
 
   return (
     <>
@@ -44,7 +58,7 @@ const WhatsAppWidget = ({ phoneNumber = '919217648531' }) => {
             fontFamily: 'var(--font-body, Inter, sans-serif)',
           }}
         >
-          Chat with us!
+          Chat & Get Free Audit!
         </span>
 
         {/* WhatsApp Icon Button */}
