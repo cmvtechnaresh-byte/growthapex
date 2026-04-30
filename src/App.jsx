@@ -61,7 +61,7 @@ function App() {
       {!isAdminPage && <Footer onOpenModal={openModal} />}
 
       {/* WhatsApp Floating Widget */}
-      {!isAdminPage && <WhatsAppWidget phoneNumber="919217648431" />}
+      {!isAdminPage && <WhatsAppWidget phoneNumber="919217648531" />}
 
       {/* Mini Audit Popup */}
       <MiniAuditModal isOpen={isModalOpen} onClose={closeModal} />

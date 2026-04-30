@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const WhatsAppWidget = ({ phoneNumber = '919217648431' }) => {
+const WhatsAppWidget = ({ phoneNumber = '919217648531' }) => {
   const [hovered, setHovered] = useState(false);
 
   const waLink = `https://wa.me/${phoneNumber}?text=Hi%20GrowthApex%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services!`;
