@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import AuditFormPage from './pages/AuditFormPage';
+import WhatsAppWidget from './components/WhatsAppWidget';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -58,7 +59,10 @@ function App() {
       </Routes>
 
       {!isAdminPage && <Footer onOpenModal={openModal} />}
-      
+
+      {/* WhatsApp Floating Widget */}
+      {!isAdminPage && <WhatsAppWidget phoneNumber="919217648431" />}
+
       {/* Mini Audit Popup */}
       <MiniAuditModal isOpen={isModalOpen} onClose={closeModal} />
     </>
