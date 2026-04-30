@@ -3,40 +3,30 @@ import { Link } from 'react-router-dom';
 import logoImg from '../assets/logoggog.png';
 
 const L = ({ href, children, route, onClick }) => {
-  const s = {
-    color: 'var(--text-3)',
-    textDecoration: 'none',
-    fontSize: '0.875rem',
-    fontWeight: 400,
-    display: 'flex', alignItems: 'center', gap: '0.45rem',
-    transition: 'color 0.12s',
-    padding: '0.1rem 0',
-  };
-  const over = e => (e.currentTarget.style.color = 'var(--text-2)');
-  const out  = e => (e.currentTarget.style.color = 'var(--text-3)');
-  if (route) return <Link to={href} style={s} onMouseOver={over} onMouseOut={out} onClick={onClick}>{children}</Link>;
-  return <a href={href} style={s} onMouseOver={over} onMouseOut={out} onClick={onClick}>{children}</a>;
+  const s = { color:'var(--text-3)', textDecoration:'none', fontSize:'0.875rem', fontWeight:400, display:'flex', alignItems:'center', gap:'0.45rem', transition:'color .12s', padding:'0.1rem 0' };
+  const ov = e => (e.currentTarget.style.color = 'var(--cyan)');
+  const ou = e => (e.currentTarget.style.color = 'var(--text-3)');
+  if (route) return <Link to={href} style={s} onMouseOver={ov} onMouseOut={ou} onClick={onClick}>{children}</Link>;
+  return <a href={href} style={s} onMouseOver={ov} onMouseOut={ou} onClick={onClick}>{children}</a>;
 };
 
 const ColHead = ({ children }) => (
-  <p style={{ fontSize:'0.68rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:'1.1rem' }}>
-    {children}
-  </p>
+  <p className="mono-accent" style={{ marginBottom:'1.1rem' }}>{children}</p>
 );
 
 const Footer = ({ onOpenModal }) => (
-  <footer style={{ background:'var(--surface)', borderTop:'1px solid var(--border)' }}>
-    <div className="container" style={{ padding:'4rem clamp(1.25rem,5vw,3.5rem) 0' }}>
+  <footer style={{ background:'var(--bg-2)', borderTop:'1px solid var(--border)' }}>
+    {/* Cyan top glow line */}
+    <div style={{ height:'1px', background:'linear-gradient(90deg,transparent,var(--cyan-glow),transparent)' }}/>
 
+    <div className="container" style={{ padding:'4rem clamp(1.25rem,5vw,3.5rem) 0' }}>
       <div className="footer-main-grid">
 
         {/* Brand */}
         <div style={{ display:'flex', flexDirection:'column', gap:'1rem' }}>
           <img src={logoImg} alt="GrowthApex" style={{ height:'44px', width:'auto', objectFit:'contain', alignSelf:'flex-start' }}
-            onError={e => { e.target.style.display='none'; }} />
-          <p style={{ fontSize:'0.68rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--green)' }}>
-            We take you to the Apex
-          </p>
+            onError={e => { e.target.style.display='none'; }}/>
+          <p className="mono-accent" style={{ fontSize:'0.65rem' }}>WE TAKE YOU TO THE APEX</p>
           <p style={{ color:'var(--text-3)', fontSize:'0.85rem', lineHeight:1.7, maxWidth:'260px' }}>
             Full stack growth partner for coaches, consultants, wellness leaders, and course creators across India.
           </p>
@@ -44,7 +34,7 @@ const Footer = ({ onOpenModal }) => (
 
         {/* Services */}
         <div>
-          <ColHead>Services</ColHead>
+          <ColHead>// SERVICES</ColHead>
           <div style={{ display:'flex', flexDirection:'column', gap:'0.75rem' }}>
             {['Performance marketing','Social media management','Funnel creation','Lead nurturing','Sales training','Growth leakage audit']
               .map(s => <L key={s} href="#services">{s}</L>)}
@@ -53,7 +43,7 @@ const Footer = ({ onOpenModal }) => (
 
         {/* Company */}
         <div>
-          <ColHead>Company</ColHead>
+          <ColHead>// COMPANY</ColHead>
           <div style={{ display:'flex', flexDirection:'column', gap:'0.75rem' }}>
             <L href="#about">About us</L>
             <L href="#results">Case studies</L>
@@ -62,10 +52,10 @@ const Footer = ({ onOpenModal }) => (
             <button onClick={onOpenModal} style={{
               background:'none', border:'none', cursor:'pointer', padding:'0.1rem 0',
               color:'var(--text-3)', fontSize:'0.875rem', fontFamily:'var(--font-body)',
-              textAlign:'left', display:'block', transition:'color 0.12s',
+              textAlign:'left', transition:'color .12s',
             }}
-            onMouseOver={e => (e.currentTarget.style.color='var(--text-2)')}
-            onMouseOut={e => (e.currentTarget.style.color='var(--text-3)')}>
+            onMouseOver={e => (e.currentTarget.style.color='var(--cyan)')}
+            onMouseOut={e  => (e.currentTarget.style.color='var(--text-3)')}>
               Contact us
             </button>
           </div>
@@ -73,7 +63,7 @@ const Footer = ({ onOpenModal }) => (
 
         {/* Contact */}
         <div>
-          <ColHead>Contact</ColHead>
+          <ColHead>// CONTACT</ColHead>
           <div style={{ display:'flex', flexDirection:'column', gap:'0.75rem' }}>
             <L href="tel:+919217648531">
               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -83,8 +73,7 @@ const Footer = ({ onOpenModal }) => (
             </L>
             <L href="mailto:support@growthapex.in">
               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
               </svg>
               support@growthapex.in
             </L>
@@ -98,23 +87,9 @@ const Footer = ({ onOpenModal }) => (
         </div>
       </div>
 
-      {/* Bottom */}
-      <div style={{
-        marginTop:'3.5rem',
-        borderTop:'1px solid var(--border)',
-        padding:'1.25rem 0',
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'space-between',
-        flexWrap:'wrap',
-        gap:'1rem',
-      }}>
-        <p style={{ color:'var(--text-3)', fontSize:'0.8rem' }}>
-          © {new Date().getFullYear()} GrowthApex. All rights reserved.
-        </p>
-        <p style={{ color:'var(--text-3)', fontSize:'0.8rem' }}>
-          Built to grow businesses, not just run campaigns.
-        </p>
+      <div style={{ marginTop:'3.5rem', borderTop:'1px solid var(--border)', padding:'1.25rem 0', display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem' }}>
+        <p className="mono" style={{ color:'var(--text-3)' }}>© {new Date().getFullYear()} GROWTHAPEX. ALL RIGHTS RESERVED.</p>
+        <p className="mono" style={{ color:'var(--text-3)' }}>BUILT TO GROW. NOT JUST TO REPORT.</p>
       </div>
     </div>
   </footer>

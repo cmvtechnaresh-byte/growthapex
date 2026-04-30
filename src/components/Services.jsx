@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, Monitor, LayoutGrid, PhoneCall, Users, Search, Plus, Minus } from 'lucide-react';
+// cyber-styled services section
 
 const SERVICES = [
   {
@@ -175,7 +176,7 @@ const Services = () => {
           style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:'2rem', flexWrap:'wrap', marginBottom:'3.5rem' }}
         >
           <div>
-            <span className="label" style={{ display:'block', marginBottom:'0.875rem' }}>Our services</span>
+            <span className="mono-accent" style={{ display:'block', marginBottom:'0.875rem' }}>// OUR SERVICES</span>
             <h2 style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(1.9rem, 4vw, 3rem)',
@@ -191,7 +192,7 @@ const Services = () => {
         </motion.div>
 
         {/* Service list */}
-        <div style={{ borderTop:'1px solid var(--border)' }}>
+        <div style={{ borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }}>
           {SERVICES.map(svc => (
             <ServiceRow
               key={svc.id}
@@ -215,14 +216,15 @@ const Services = () => {
             gap: '2rem',
             flexWrap: 'wrap',
             padding: '2.5rem',
-            background: 'var(--surface)',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border)',
+            background: 'var(--bg-2)',
+            borderRadius: 'var(--r2)',
+            border: '1px solid var(--border-2)',
+            boxShadow: '0 0 40px rgba(34,211,238,0.04)',
           }}
           className="cta-banner"
         >
           <div>
-            <span className="label" style={{ display:'block', marginBottom:'0.5rem' }}>Not sure where to start?</span>
+            <span className="mono-accent" style={{ display:'block', marginBottom:'0.5rem' }}>// NOT SURE WHERE TO START?</span>
             <h3 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(1.3rem,2.5vw,1.8rem)', fontWeight:800, letterSpacing:'-0.025em' }}>
               Start with a free growth audit.
             </h3>
@@ -231,7 +233,7 @@ const Services = () => {
             </p>
           </div>
           <button
-            className="btn btn-primary btn-glow"
+            className="btn btn-cyber"
             style={{ padding:'0.9rem 2rem', fontSize:'0.92rem', flexShrink:0 }}
           >
             Book your free audit
