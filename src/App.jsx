@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import AuditFormPage from './pages/AuditFormPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import WhatsAppWidget from './components/WhatsAppWidget';
 
 // Admin Pages
@@ -52,6 +53,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
         <Route path="/audit" element={<AuditFormPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
         
         {/* Admin Routes */}
         <Route path="/emslogin" element={<AdminLogin />} />

@@ -89,7 +89,18 @@ const Footer = ({ onOpenModal }) => (
 
       <div style={{ marginTop:'3.5rem', borderTop:'1px solid var(--border)', padding:'1.25rem 0', display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem' }}>
         <p className="mono" style={{ color:'var(--text-3)' }}>© {new Date().getFullYear()} GROWTHAPEX. ALL RIGHTS RESERVED.</p>
-        <p className="mono" style={{ color:'var(--text-3)' }}>BUILT TO GROW. NOT JUST TO REPORT.</p>
+        <div style={{ display:'flex', alignItems:'center', gap:'1.5rem' }}>
+          <Link
+            to="/privacy"
+            className="mono"
+            style={{ color:'var(--text-3)', textDecoration:'none', transition:'color .12s' }}
+            onMouseOver={e => (e.currentTarget.style.color='var(--cyan)')}
+            onMouseOut={e  => (e.currentTarget.style.color='var(--text-3)')}
+          >
+            PRIVACY POLICY
+          </Link>
+          <p className="mono" style={{ color:'var(--text-3)' }}>BUILT TO GROW. NOT JUST TO REPORT.</p>
+        </div>
       </div>
     </div>
   </footer>
