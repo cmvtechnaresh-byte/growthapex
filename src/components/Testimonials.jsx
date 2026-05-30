@@ -1,37 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, MessageSquareQuote, ChevronLeft, ChevronRight } from 'lucide-react';
-import vijayImg from '../assets/Screenshot 2026-03-21 010644.png';
-
-const cases = [
-  {
-    type: "Health Coach",
-    metricTitle: "Generated Revenue",
-    metricValue: "₹22L",
-    beforeLabel: "BEFORE", beforeValue: "12 Leads",
-    afterLabel: "AFTER (30 Days)", afterValue: "320 Leads",
-    methodLbl: "Method:", methodVal: "Meta Ads",
-    systemLbl: "System:", systemVal: "Webinar Funnel"
-  },
-  {
-    type: "Consultant",
-    metricTitle: "Return on Ad Spend",
-    metricValue: "4X ROI",
-    beforeLabel: "BEFORE (CPL)", beforeValue: "₹850",
-    afterLabel: "AFTER (CPL)", afterValue: "₹210",
-    methodLbl: "Platform:", methodVal: "Google & Meta",
-    systemLbl: "System:", systemVal: "VSL Funnel"
-  },
-  {
-    type: "Fitness Coach",
-    metricTitle: "Consistent Leads",
-    metricValue: "150+/mo",
-    beforeLabel: "BEFORE", beforeValue: "Word of Mouth",
-    afterLabel: "AFTER", afterValue: "Predictable Ops",
-    methodLbl: "Method:", methodVal: "IG Personal Brand",
-    systemLbl: "System:", systemVal: "DM Automation"
-  }
-];
+import { Star, MessageSquareQuote, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 import aarush from '../assets/client/Aarush_Bhola.jpeg';
 import nandan from '../assets/client/Coach Nandan.jpg';
@@ -41,9 +10,8 @@ import sujoy from '../assets/client/Sujoy das.jpg';
 import yash from '../assets/client/Yash Sharma.jpg';
 import deepak from '../assets/client/deepak baja.jpg';
 import jitesh from '../assets/client/jitesh pant.jpg';
-import saurav from '../assets/client/saurav singha.jpg';
 
-// ── Testimonials for the auto-slider ──────────────────────────────────────────
+// ── Text Testimonials for the auto-slider ──────────────────────────────────────────
 const testimonials = [
   {
     quote: "GrowthApex doesn't just run ads — they build systems. Within 45 days our cost per lead dropped from ₹850 to ₹210.",
@@ -103,7 +71,7 @@ const testimonials = [
   },
 ];
 
-const SLIDE_INTERVAL = 4000;
+const SLIDE_INTERVAL = 5000;
 
 const variants = {
   enter: (dir) => ({
@@ -166,18 +134,18 @@ const TestimonialSlider = () => {
           padding: '4rem 3rem',
           textAlign: 'center',
           position: 'relative',
-          minHeight: '360px',
-          background: '#ffffff',
-          borderRadius: '2.5rem',
-          border: '1px solid rgba(0,0,0,0.08)',
-          boxShadow: '0 40px 80px rgba(0,0,0,0.05)',
+          minHeight: '320px',
+          background: 'var(--bg-2)',
+          borderRadius: 'var(--r2)',
+          border: '1px solid var(--border)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center'
         }}
       >
-        <MessageSquareQuote size={140} color="var(--primary)" style={{ position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)', opacity: 0.04, zIndex: 0 }} />
+        <MessageSquareQuote size={140} color="var(--cyan)" style={{ position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)', opacity: 0.03, zIndex: 0 }} />
 
         {/* Slide content */}
         <AnimatePresence custom={direction} mode="wait">
@@ -192,18 +160,18 @@ const TestimonialSlider = () => {
             {/* Stars */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.75rem', marginTop: '0.5rem' }}>
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={22} fill="#fbbf24" color="#fbbf24" />
+                <Star key={i} size={18} fill="var(--cyan)" color="var(--cyan)" style={{ opacity: 0.9 }} />
               ))}
             </div>
 
             {/* Quote */}
             <p style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+              fontSize: 'clamp(1.05rem, 2vw, 1.3rem)',
               fontStyle: 'italic',
-              fontWeight: 500,
-              color: '#0f172a',
-              lineHeight: 1.6,
-              marginBottom: '3rem',
+              fontWeight: 400,
+              color: 'var(--text-1)',
+              lineHeight: 1.65,
+              marginBottom: '2.5rem',
               fontFamily: 'var(--font-body)',
             }}>
               "{t.quote}"
@@ -212,23 +180,25 @@ const TestimonialSlider = () => {
             {/* Author */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
               <div style={{
-                width: '56px',
-                height: '56px',
+                width: '52px',
+                height: '52px',
                 borderRadius: '50%',
                 background: t.img ? `url(${t.img}) center/cover no-repeat` : t.gradient,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: '1.1rem',
+                fontSize: '1rem',
                 fontWeight: 700,
                 color: '#ffffff',
                 flexShrink: 0,
-                boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+                border: '2px solid var(--border-2)',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
               }}>
-                {!t.img && t.initials}
+                {!t.img && t.name.charAt(0)}
               </div>
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#0f172a' }}>{t.name}</div>
+                <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-1)' }}>{t.name}</div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-2)', marginTop: '0.1rem', fontFamily: 'var(--font-mono)' }}>{t.role}</div>
               </div>
             </div>
           </motion.div>
@@ -245,29 +215,31 @@ const TestimonialSlider = () => {
             top: '50%',
             [side]: '-24px',
             transform: 'translateY(-50%)',
-            width: '48px',
-            height: '48px',
+            width: '44px',
+            height: '44px',
             borderRadius: '50%',
-            background: '#ffffff',
-            border: '1px solid rgba(0,0,0,0.08)',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.06)',
+            background: 'var(--bg-3)',
+            border: '1px solid var(--border)',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.4)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
             zIndex: 10,
-            transition: 'box-shadow 0.2s ease, transform 0.2s ease',
+            transition: 'all 0.2s ease',
           }}
           onMouseEnter={e => {
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(22, 78, 170,0.18)';
+            e.currentTarget.style.borderColor = 'var(--cyan)';
+            e.currentTarget.style.boxShadow = '0 0 16px var(--cyan-glow)';
             e.currentTarget.style.transform = 'translateY(-50%) scale(1.08)';
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.06)';
+            e.currentTarget.style.borderColor = 'var(--border)';
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.4)';
             e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
           }}
         >
-          <Icon size={20} color="var(--primary)" />
+          <Icon size={18} color="var(--cyan)" />
         </button>
       ))}
 
@@ -278,10 +250,10 @@ const TestimonialSlider = () => {
             key={i}
             onClick={() => setCurrent([i, i > current ? 1 : -1])}
             style={{
-              width: i === current ? '28px' : '8px',
-              height: '8px',
+              width: i === current ? '24px' : '6px',
+              height: '6px',
               borderRadius: '99px',
-              background: i === current ? 'var(--primary)' : 'rgba(0,0,0,0.1)',
+              background: i === current ? 'var(--cyan)' : 'var(--border-2)',
               border: 'none',
               cursor: 'pointer',
               padding: 0,
@@ -296,77 +268,213 @@ const TestimonialSlider = () => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Testimonials = () => {
+const Testimonials = ({ onOpenModal }) => {
   return (
-    <section className="section" id="results">
-      <div className="container">
-        <div className="text-center" style={{ marginBottom: '4rem' }}>
-          <div className="badge mb-4">Real Growth. Real Numbers.</div>
-          <h2 className="heading-lg" style={{ marginBottom: '1rem' }}>
-            Transforming Coaches into <span className="text-gradient-primary">Industry Leaders</span>
+    <section className="section" id="testimonials" style={{ background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
+      {/* Decorative background grid and glow */}
+      <div className="cyber-grid" />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px', background: 'var(--border)' }} />
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, var(--cyan-glow), transparent)' }} />
+      
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '4.5rem' }}>
+          <span className="mono-accent" style={{ display: 'block', marginBottom: '0.875rem' }}>// CLIENT STORIES</span>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '1.25rem' }}>
+            Success in Action. <span style={{ color: 'var(--text-2)', fontWeight: 600 }}>Hear from Our Clients.</span>
           </h2>
+          <p style={{ color: 'var(--text-2)', fontSize: '0.95rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.75 }}>
+            Real reviews, real screens, and actual revenue breakdowns. See how coaches and creators scale their business with GrowthApex.
+          </p>
         </div>
 
-        {/* Results cards grid */}
-        <div className="grid grid-3 gap-6" style={{ marginBottom: '6rem' }}>
-          {cases.map((c, i) => (
-            <div
-              key={i}
-              className="glass relative hover-card"
+        {/* ── Featured Video Testimonial ── */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1.2fr 0.8fr',
+          gap: '2.5rem',
+          alignItems: 'center',
+          background: 'var(--bg-2)',
+          border: '1px solid var(--border-2)',
+          borderRadius: 'var(--r2)',
+          padding: '2.5rem',
+          marginBottom: '4rem',
+          boxShadow: '0 16px 40px rgba(0,0,0,0.4)',
+          position: 'relative',
+          overflow: 'hidden'
+        }} className="featured-video-container">
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, var(--cyan-glow), transparent)' }} />
+          
+          {/* Video Player */}
+          <div style={{ 
+            position: 'relative',
+            width: '100%',
+            paddingTop: '56.25%', /* 16:9 Aspect Ratio */
+            borderRadius: 'var(--r2)',
+            overflow: 'hidden',
+            border: '1px solid var(--border)',
+            boxShadow: '0 12px 30px rgba(0,0,0,0.5)'
+          }}>
+            <iframe 
+              src="https://www.youtube.com/embed/-JaQ6VqqVUI" 
+              title="Featured Client Testimonial" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowFullScreen 
               style={{
-                padding: '2rem 1.5rem',
-                borderRadius: '1.5rem',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
                 height: '100%',
-                background: 'rgba(255,255,255,0.04)',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                border: 'none'
               }}
-            >
-              <div className="badge" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.05)', color: '#0f172a', border: '1px solid rgba(0,0,0,0.1)' }}>{c.type}</div>
-
-              <div style={{ marginBottom: '1.5rem', background: 'rgba(255,255,255,0.03)', padding: '1rem 1.25rem', borderRadius: '1rem', borderLeft: '5px solid var(--primary)', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>
-                <div style={{ color: '#475569', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.25rem' }}>{c.metricTitle}</div>
-                <div style={{ fontSize: '2.8rem', fontWeight: 900, color: 'var(--primary)', lineHeight: 1, letterSpacing: '-1.5px' }}>{c.metricValue}</div>
-              </div>
-
-              <div className="grid grid-2 gap-4" style={{ marginBottom: '2.5rem' }}>
-                <div style={{ padding: '0.8rem 1rem', background: 'rgba(239,68,68,0.1)', borderRadius: '0.75rem', border: '1px solid rgba(239,68,68,0.2)' }}>
-                  <div style={{ color: '#475569', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.beforeLabel}</div>
-                  <div style={{ fontWeight: 800, color: '#ef4444', fontSize: '1rem' }}>{c.beforeValue}</div>
-                </div>
-                <div style={{ padding: '0.8rem 1rem', background: 'rgba(16,185,129,0.1)', borderRadius: '0.75rem', border: '1px solid rgba(16,185,129,0.2)' }}>
-                  <div style={{ color: '#10b981', fontSize: '0.65rem', fontWeight: 800, marginBottom: '0.25rem', textTransform: 'uppercase' }}>{c.afterLabel}</div>
-                  <div style={{ fontWeight: 800, color: '#10b981', fontSize: '1rem' }}>{c.afterValue}</div>
-                </div>
-              </div>
-
-              <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-muted">{c.methodLbl}</span>
-                  <span style={{ fontWeight: 600 }}>{c.methodVal}</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-muted">{c.systemLbl}</span>
-                  <span style={{ fontWeight: 600 }}>{c.systemVal}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Auto-sliding testimonials ── */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="badge" style={{ marginBottom: '1.5rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-            <span style={{ color: 'var(--primary)' }}>*</span> WHAT OUR CLIENTS SAY
+            />
           </div>
-          <h2 style={{ fontWeight: 900, fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-2px' }}>
-            Hear It From The <br /> <span className="text-gradient-primary">People We've Helped</span>
-          </h2>
+
+          {/* Details / Text */}
+          <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+              <span className="tag tag-cyan">Featured Review</span>
+              <span style={{ color: 'var(--cyan)', display: 'inline-flex', alignItems: 'center', fontSize: '0.8rem' }}>
+                <Sparkles size={14} style={{ marginRight: '4px' }} /> Case Study
+              </span>
+            </div>
+            
+            <h3 style={{ fontSize: 'clamp(1.3rem, 2vw, 1.7rem)', fontWeight: 800, color: 'var(--text-1)', marginBottom: '1.25rem', lineHeight: 1.25, letterSpacing: '-0.025em' }}>
+              How We Transformed Client Acquisition
+            </h3>
+            
+            <p style={{ color: 'var(--text-2)', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '2rem' }}>
+              Watch the detailed interview to understand our exact funnel building process, ad scaling strategies, and WhatsApp automation systems that generate high-ticket conversions on autopilot.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2.25rem' }}>
+              {[
+                "Complete funnel redesign & optimization",
+                "Automated high-ticket WhatsApp CRM setups",
+                "Meta & Google ad scaling with hyper-targeting",
+                "Dedicated sales team training and conversion coaching"
+              ].map((item, idx) => (
+                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.85rem', color: 'var(--text-1)' }}>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--cyan)', boxShadow: '0 0 8px var(--cyan)' }} />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <button onClick={onOpenModal} className="btn btn-cyber" style={{ padding: '0.85rem 1.75rem', width: 'fit-content' }}>
+              Get Your Free Growth Audit
+            </button>
+          </div>
         </div>
 
-        <TestimonialSlider />
+        {/* ── Shorts Gallery ── */}
+        <div style={{ marginBottom: '5.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2.4rem' }}>
+            <span className="mono-accent">// SHORTS SUCCESS STORIES</span>
+            <div style={{ height: '1px', flex: 1, background: 'var(--border)' }} />
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '1.5rem'
+          }} className="shorts-grid">
+            {[
+              { id: 'viAl-tNeaSw', title: 'Breakthrough Success Story' },
+              { id: 'pw0tnxhZ_no', title: 'Lead Flow Automation Results' },
+              { id: 'gavgY4dmBQE', title: 'Revenue Scaling Strategy' }
+            ].map((short, idx) => (
+              <div 
+                key={idx} 
+                className="glass hover-card"
+                style={{
+                  background: 'var(--bg-2)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 'var(--r2)',
+                  padding: '1.25rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+              >
+                {/* Short Video Player Frame */}
+                <div style={{
+                  position: 'relative',
+                  width: '100%',
+                  paddingTop: '177.78%', /* 9:16 Aspect Ratio */
+                  borderRadius: 'var(--r)',
+                  overflow: 'hidden',
+                  background: '#000',
+                  boxShadow: 'inset 0 0 20px rgba(0,0,0,0.8), 0 4px 12px rgba(0,0,0,0.3)'
+                }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${short.id}`}
+                    title={short.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 'none'
+                    }}
+                  />
+                </div>
+                
+                {/* Video Info */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.25rem 0.5rem 0' }}>
+                  <span className="mono" style={{ color: 'var(--cyan)', fontWeight: 600 }}>SHORT REVIEW</span>
+                  <div style={{ display: 'flex', gap: '2px' }}>
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={11} fill="var(--cyan)" color="var(--cyan)" style={{ opacity: 0.8 }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Slider Text Testimonials ── */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '3.5rem' }}>
+            <span className="mono-accent">// MORE REVIEWS FROM THE FIELD</span>
+            <div style={{ height: '1px', flex: 1, background: 'var(--border)' }} />
+          </div>
+
+          <TestimonialSlider />
+        </div>
+
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .featured-video-container {
+            grid-template-columns: 1fr !important;
+            padding: 1.5rem !important;
+            gap: 1.75rem !important;
+          }
+          .shorts-grid {
+            grid-template-columns: 1fr !important;
+            max-width: 420px;
+            margin: 0 auto;
+          }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+          .shorts-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            max-width: 100%;
+          }
+        }
+      `}</style>
     </section>
   );
 };

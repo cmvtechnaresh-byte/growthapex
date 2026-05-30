@@ -16,6 +16,7 @@ import BlogDetailPage from './pages/BlogDetailPage';
 import AuditFormPage from './pages/AuditFormPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import Testimonials from './components/Testimonials';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -29,7 +30,8 @@ const HomePage = ({ onOpenModal }) => (
     <Difference />
     <Services />
     <Process />
-    <Results />
+    <Results onOpenModal={onOpenModal} />
+    <Testimonials onOpenModal={onOpenModal} />
     <Niches />
     <BookAudit onOpenModal={onOpenModal} />
   </>
