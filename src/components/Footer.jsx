@@ -48,6 +48,7 @@ const Footer = ({ onOpenModal }) => (
             <L href="#about">About us</L>
             <L href="#results">Case studies</L>
             <L href="#niches">Who we work with</L>
+            <L href="/real-estate" route>Real estate</L>
             <L href="/audit" route>Book a free audit</L>
             <button onClick={onOpenModal} style={{
               background:'none', border:'none', cursor:'pointer', padding:'0.1rem 0',

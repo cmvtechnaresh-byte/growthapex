@@ -17,6 +17,8 @@ import AuditFormPage from './pages/AuditFormPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import Testimonials from './components/Testimonials';
+import RealEstate from './components/RealEstate';
+import RealEstatePage from './pages/RealEstatePage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -32,6 +34,7 @@ const HomePage = ({ onOpenModal }) => (
     <Process />
     <Results onOpenModal={onOpenModal} />
     <Testimonials onOpenModal={onOpenModal} />
+    <RealEstate onOpenModal={onOpenModal} />
     <Niches />
     <BookAudit onOpenModal={onOpenModal} />
   </>
@@ -56,6 +59,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetailPage />} />
         <Route path="/audit" element={<AuditFormPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="/real-estate" element={<RealEstatePage />} />
         
         {/* Admin Routes */}
         <Route path="/emslogin" element={<AdminLogin />} />

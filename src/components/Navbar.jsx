@@ -5,11 +5,11 @@ import { Link, useLocation } from 'react-router-dom';
 import logoImg from '../assets/logoggog.png';
 
 const NAV = [
-  { label:'About',    href:'/#about' },
-  { label:'Services', href:'/#services' },
-  { label:'Results',  href:'/#results' },
-  { label:'Process',  href:'/#process' },
-  { label:'Blog',     href:'/blog', route:true },
+  { label:'About',       href:'/#about' },
+  { label:'Services',    href:'/#services' },
+  { label:'Results',     href:'/#results' },
+  { label:'Process',     href:'/#process' },
+  { label:'Blog',        href:'/blog', route:true },
 ];
 
 const Navbar = ({ onOpenModal }) => {

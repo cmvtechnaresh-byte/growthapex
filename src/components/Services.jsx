@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, Monitor, LayoutGrid, PhoneCall, Users, Search, Plus, Minus } from 'lucide-react';
+import { Activity, Monitor, LayoutGrid, PhoneCall, Users, Search, Plus, Minus, Building2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 // cyber-styled services section
 
 const SERVICES = [
   {
     id: 1,
+    Icon: Building2,
+    title: 'Real estate marketing',
+    tag: 'Real Estate',
+    tagColor: '#a855f7',
+    desc: 'Full-funnel digital marketing for developers, builders, and aggregators — from pre-launch buzz to project sellout. We drive qualified site visits and channel partner activations.',
+    features: ['Buyer intent & NRI targeting', 'Project launch campaigns', 'Channel partner recruitment funnels', 'Site visit nurturing via WhatsApp', 'Hyperlocal & geo-fence ads'],
+    link: '/real-estate',
+  },
+  {
+    id: 2,
     Icon: Monitor,
     title: 'End-to-end social media',
     tag: 'Social',
@@ -14,7 +25,7 @@ const SERVICES = [
     features: ['Monthly content calendar', 'Reels, carousels & static posts', 'Caption & hashtag strategy', 'Community engagement', 'Platform growth tracking'],
   },
   {
-    id: 2,
+    id: 3,
     Icon: Activity,
     title: 'Performance marketing',
     tag: 'Ads',
@@ -24,7 +35,7 @@ const SERVICES = [
     features: ['Meta ads — Facebook & Instagram', 'Google search & display', 'Ad copy & creative strategy', 'Weekly performance reports', 'Continuous A/B optimisation'],
   },
   {
-    id: 3,
+    id: 4,
     Icon: LayoutGrid,
     title: 'Funnel creation',
     tag: 'Funnels',
@@ -33,7 +44,7 @@ const SERVICES = [
     features: ['Landing page design & copy', 'Webinar & lead gen funnels', 'Thank you & upsell pages', 'Integration & testing'],
   },
   {
-    id: 4,
+    id: 5,
     Icon: PhoneCall,
     title: 'Lead nurturing',
     tag: 'CRM',
@@ -42,7 +53,7 @@ const SERVICES = [
     features: ['WhatsApp automation flows', 'Email nurture sequences', 'Re-engagement campaigns', 'CRM setup & management'],
   },
   {
-    id: 5,
+    id: 6,
     Icon: Users,
     title: 'Sales team training',
     tag: 'Training',
@@ -51,12 +62,12 @@ const SERVICES = [
     features: ['Sales script development', 'Objection handling playbook', 'Live mock call sessions', 'Conversion tracking'],
   },
   {
-    id: 6,
+    id: 7,
     Icon: Search,
     title: 'Growth leakage audit',
     tag: 'Audit',
     tagColor: '#fb923c',
-    desc: 'Most businesses lose 40–60% of potential revenue through invisible gaps. We find every leak and fix it before spending another rupee on ads.',
+    desc: 'Most businesses lose 40-60% of potential revenue through invisible gaps. We find every leak and fix it before spending another rupee on ads.',
     features: ['Funnel gap analysis', 'Follow-up failure detection', 'Landing page review', 'Sales conversion gaps'],
   },
 ];
@@ -77,7 +88,7 @@ const ServiceRow = ({ service, isOpen, onToggle }) => (
     >
       {/* Number */}
       <span style={{ fontFamily:'var(--font-display)', fontSize:'0.7rem', fontWeight:700, color:'var(--text-3)', letterSpacing:'0.08em', width:'24px', flexShrink:0 }}>
-        0{service.id}
+        {service.id < 10 ? `0${service.id}` : service.id}
       </span>
 
       {/* Icon */}
@@ -155,6 +166,23 @@ const ServiceRow = ({ service, isOpen, onToggle }) => (
                 </li>
               ))}
             </ul>
+            {service.link && (
+              <div style={{ paddingTop: '0.5rem', gridColumn: '1 / -1' }}>
+                <Link
+                  to={service.link}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                    fontSize: '0.82rem', fontWeight: 700, color: service.tagColor,
+                    textDecoration: 'none', fontFamily: 'var(--font-mono)',
+                    letterSpacing: '0.04em', transition: 'opacity 0.15s',
+                  }}
+                  onMouseOver={e => (e.currentTarget.style.opacity = '0.7')}
+                  onMouseOut={e => (e.currentTarget.style.opacity = '1')}
+                >
+                  VIEW REAL ESTATE SERVICES &rarr;
+                </Link>
+              </div>
+            )}
           </div>
         </motion.div>
       )}
